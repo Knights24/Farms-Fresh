@@ -25,7 +25,7 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
   const { cartItems, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
 
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
+    <Sheet open={open} onOpen-change={onOpenChange}>
       <SheetContent className="flex flex-col">
         <SheetHeader>
           <SheetTitle>Your Cart</SheetTitle>
@@ -42,7 +42,7 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
                       width={64}
                       height={64}
                       className="rounded-md object-cover"
-                      data-ai-hint="produce"
+                      data-ai-hint={item.name.split(' ')[1] ? `${item.name.split(' ')[0]} ${item.name.split(' ')[1]}`: item.name.split(' ')[0]}
                     />
                     <div className="flex-grow">
                       <p className="font-medium">{item.name}</p>

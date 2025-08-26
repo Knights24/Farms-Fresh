@@ -41,7 +41,7 @@ export default function OrdersPage() {
                       width={48}
                       height={48}
                       className="rounded-md object-cover"
-                      data-ai-hint="produce"
+                      data-ai-hint={item.name.split(' ')[1] ? `${item.name.split(' ')[0]} ${item.name.split(' ')[1]}`: item.name.split(' ')[0]}
                     />
                     <div className="flex-grow">
                       <p className="font-medium">{item.name}</p>

@@ -30,7 +30,7 @@ export default function ProduceCard({ produce }: ProduceCardProps) {
             alt={produce.name}
             fill
             className="object-cover"
-            data-ai-hint="produce"
+            data-ai-hint={produce.name.split(' ')[1] ? `${produce.name.split(' ')[0]} ${produce.name.split(' ')[1]}`: produce.name.split(' ')[0]}
           />
         </div>
       </CardHeader>
