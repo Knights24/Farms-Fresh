@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -8,15 +8,18 @@ import { generateImage } from '@/ai/flows/image-generation';
 import Image from 'next/image';
 import { Loader2, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { Skeleton } from '@/components/ui/skeleton';
+
+const defaultPrompt = "A fresh head of cauliflower";
 
 export default function ImageGeneratorPage() {
-  const [prompt, setPrompt] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [prompt, setPrompt] = useState(defaultPrompt);
+  const [loading, setLoading] = useState(true);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const handleGenerateImage = async () => {
-    if (!prompt) {
+  const handleGenerateImage = async (currentPrompt: string) => {
+    if (!currentPrompt) {
         toast({
             variant: 'destructive',
             title: 'Prompt is required',
@@ -29,7 +32,7 @@ export default function ImageGeneratorPage() {
     setGeneratedImage(null);
 
     try {
-      const result = await generateImage({ prompt });
+      const result = await generateImage({ prompt: currentPrompt });
       setGeneratedImage(result.imageUrl);
     } catch (e) {
       console.error(e);
@@ -42,6 +45,12 @@ export default function ImageGeneratorPage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    handleGenerateImage(defaultPrompt);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   return (
     <div className="max-w-2xl mx-auto space-y-8">
@@ -65,10 +74,11 @@ export default function ImageGeneratorPage() {
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="e.g., 'A bunch of ripe red tomatoes on a vine'"
             disabled={loading}
+            onKeyDown={(e) => e.key === 'Enter' && handleGenerateImage(prompt)}
           />
         </CardContent>
         <CardFooter>
-          <Button onClick={handleGenerateImage} disabled={loading}>
+          <Button onClick={() => handleGenerateImage(prompt)} disabled={loading}>
             {loading ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             ) : (
@@ -78,21 +88,19 @@ export default function ImageGeneratorPage() {
           </Button>
         </CardFooter>
       </Card>
-      
-      {loading && (
-        <div className="flex justify-center items-center">
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            <p className="ml-2 text-muted-foreground">Generating your image...</p>
-        </div>
-      )}
 
-      {generatedImage && (
-        <Card className="overflow-hidden">
-            <CardHeader>
-                <CardTitle>Generated Image</CardTitle>
-            </CardHeader>
-          <CardContent>
-            <div className="aspect-video relative">
+      <Card className="overflow-hidden">
+          <CardHeader>
+              <CardTitle>Generated Image</CardTitle>
+          </CardHeader>
+        <CardContent>
+          {loading && (
+            <div className="aspect-square">
+              <Skeleton className="w-full h-full" />
+            </div>
+          )}
+          {generatedImage && !loading && (
+            <div className="aspect-square relative">
                 <Image
                     src={generatedImage}
                     alt={prompt}
@@ -100,9 +108,9 @@ export default function ImageGeneratorPage() {
                     className="object-contain rounded-md"
                 />
             </div>
-          </CardContent>
-        </Card>
-      )}
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
