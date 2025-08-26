@@ -4,9 +4,16 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import { CartProvider } from '@/context/cart-context';
 import Footer from '@/components/layout/footer';
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
-  title: 'Farm Fresh',
+  title: 'Farms Fresh',
   description: 'Seasonal fruits and vegetables sourced directly from local farms.',
 };
 
@@ -17,13 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body antialiased">
+      <body className={`${poppins.variable} font-body antialiased`}>
         <CartProvider>
           <div className="flex flex-col min-h-screen">
             <Header />
