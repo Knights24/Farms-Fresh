@@ -32,7 +32,7 @@ export default function Header() {
             </div>
             <nav className="hidden lg:flex lg:space-x-8">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <Link key={`${link.href}-${link.label}`} href={link.href} className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors">
                   {link.label}
                 </Link>
               ))}
