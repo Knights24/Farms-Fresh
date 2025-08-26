@@ -30,15 +30,15 @@ export default function Footer() {
             <div className="space-y-2 text-sm text-gray-300">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                <span>123 Fresh Street, Farm District, City 123456</span>
+                <span>Ahmedabad, Gujarat, India</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 9328797168</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>hello@farmsfresh.com</span>
+                <span>vivekvishwakarma21@outlook.com</span>
               </div>
             </div>
           </div>
