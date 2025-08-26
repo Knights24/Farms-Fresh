@@ -22,6 +22,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Shop' },
   { href: '/orders', label: 'Orders' },
+  { href: '/generate-images', label: 'AI Images' },
   { href: '#about', label: 'About' },
 ];
 

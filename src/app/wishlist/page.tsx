@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/context/cart-context';
 import { useToast } from '@/hooks/use-toast';
+import { useWishlist } from '@/hooks/use-local-storage';
 import Image from 'next/image';
 import { produce } from '@/lib/data';
 import type { Produce } from '@/types';
@@ -15,24 +16,18 @@ export default function WishlistPage() {
   const [wishlistItems, setWishlistItems] = useState<Produce[]>([]);
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const { wishlistIds, removeFromWishlist: removeFromWishlistHook, isLoaded } = useWishlist();
 
-  // Load wishlist from localStorage on component mount
+  // Update wishlist items when wishlist IDs change
   useEffect(() => {
-    const savedWishlist = localStorage.getItem('wishlist');
-    if (savedWishlist) {
-      const wishlistIds = JSON.parse(savedWishlist);
+    if (isLoaded) {
       const items = produce.filter(item => wishlistIds.includes(item.id));
       setWishlistItems(items);
     }
-  }, []);
+  }, [wishlistIds, isLoaded]);
 
   const removeFromWishlist = (itemId: string) => {
-    const updatedWishlist = wishlistItems.filter(item => item.id !== itemId);
-    setWishlistItems(updatedWishlist);
-    
-    // Update localStorage
-    const wishlistIds = updatedWishlist.map(item => item.id);
-    localStorage.setItem('wishlist', JSON.stringify(wishlistIds));
+    removeFromWishlistHook(itemId);
     
     toast({
       title: "Removed from wishlist",
@@ -59,7 +54,12 @@ export default function WishlistPage() {
           </p>
         </div>
 
-        {wishlistItems.length === 0 ? (
+        {!isLoaded ? (
+          <div className="text-center py-16">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading wishlist...</p>
+          </div>
+        ) : wishlistItems.length === 0 ? (
           <div className="text-center py-16">
             <Heart className="h-24 w-24 mx-auto text-gray-300 mb-6" />
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Your wishlist is empty</h2>
