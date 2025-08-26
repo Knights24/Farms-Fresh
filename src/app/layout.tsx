@@ -13,8 +13,26 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Farms Fresh',
-  description: 'Seasonal fruits and vegetables sourced directly from local farms.',
+  title: 'Farm Fresh - Premium Organic Produce Delivery',
+  description: 'Fresh, organic produce delivered straight from trusted local farms to your doorstep. Quality guaranteed, freshness assured.',
+  keywords: 'organic produce, fresh vegetables, farm fresh, organic fruits, local farms, grocery delivery',
+  authors: [{ name: 'Farm Fresh Team' }],
+  openGraph: {
+    title: 'Farm Fresh - Premium Organic Produce Delivery',
+    description: 'Fresh, organic produce delivered straight from trusted local farms to your doorstep.',
+    type: 'website',
+    images: ['/images/logo.svg?v=2'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Farm Fresh - Premium Organic Produce Delivery',
+    description: 'Fresh, organic produce delivered straight from trusted local farms to your doorstep.',
+    images: ['/images/logo.svg?v=2'],
+  },
+  icons: {
+    icon: '/images/logo.svg?v=2',
+    apple: '/images/logo.svg?v=2',
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +46,7 @@ export default function RootLayout({
         <CartProvider>
           <div className="flex flex-col min-h-screen">
             <Header />
-            <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <main className="flex-grow">
               {children}
             </main>
             <Footer />

@@ -1,7 +1,25 @@
 {
-  "name": "nextn",
-  "version": "0.1.0",
+  "name": "farm-fresh",
+  "version": "1.0.0",
+  "description": "Premium organic produce delivery platform - Fresh, organic produce delivered straight from trusted local farms to your doorstep",
   "private": true,
+  "homepage": "https://farmfresh.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Knights24/FreshFarm.git"
+  },
+  "author": "Farm Fresh Team",
+  "license": "MIT",
+  "keywords": [
+    "organic produce",
+    "fresh vegetables",
+    "farm fresh",
+    "grocery delivery",
+    "e-commerce",
+    "nextjs",
+    "react",
+    "typescript"
+  ],
   "scripts": {
     "dev": "next dev --turbopack -p 9002",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",

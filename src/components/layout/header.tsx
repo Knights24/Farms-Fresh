@@ -1,58 +1,144 @@
 'use client';
 
 import Link from 'next/link';
-import { Leaf, ShoppingCart, Search } from 'lucide-react';
+import Image from 'next/image';
+import { Leaf, ShoppingCart, Search, Menu, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import CartSheet from '@/components/cart-sheet';
 import { useCart } from '@/context/cart-context';
 import { useState } from 'react';
 import { Input } from '../ui/input';
+import { Badge } from '../ui/badge';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '#', label: 'Categories' },
-  { href: '#', label: 'Deals' },
-  { href: '#', label: 'Contact' },
+  { href: '/recipes', label: 'Shop' },
+  { href: '/recipes', label: 'Categories' },
+  { href: '/orders', label: 'Orders' },
+  { href: '#', label: 'About' },
 ];
 
 export default function Header() {
   const { itemCount } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <>
-      <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+      <header className="bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
             <div className="flex items-center">
-              <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-foreground">
-                <Leaf className="h-7 w-7 text-primary" />
-                Farms Fresh
+              <Link href="/" className="flex items-center gap-2 text-xl font-bold text-gray-900">
+                <div className="relative w-10 h-10">
+                  <Image
+                    src="/images/logo.svg?v=2"
+                    alt="Farm Fresh Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                Farm Fresh
               </Link>
             </div>
-            <nav className="hidden lg:flex lg:space-x-8">
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex lg:items-center lg:space-x-8">
               {navLinks.map((link) => (
-                <Link key={`${link.href}-${link.label}`} href={link.href} className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors">
+                <Link 
+                  key={`${link.href}-${link.label}`} 
+                  href={link.href} 
+                  className="text-sm font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-lg hover:bg-green-50"
+                >
                   {link.label}
                 </Link>
               ))}
             </nav>
-            <div className="flex items-center gap-4">
-               <div className="relative hidden md:block">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input placeholder="Search" className="w-full pl-9 bg-accent border-none" />
-               </div>
-              <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(true)} className="relative bg-accent">
-                <ShoppingCart className="h-5 w-5" />
+
+            {/* Search Bar (Desktop) */}
+            <div className="hidden lg:flex lg:items-center lg:gap-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input 
+                  placeholder="Search products..." 
+                  className="w-64 pl-9 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-gray-50 focus:bg-white text-sm" 
+                />
+              </div>
+            </div>
+
+            {/* Right Actions */}
+            <div className="flex items-center gap-2">
+              {/* Search (Mobile) */}
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="lg:hidden hover:bg-gray-100 rounded-lg"
+              >
+                <Search className="h-5 w-5 text-gray-600" />
+              </Button>
+
+              {/* User Account */}
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="hidden sm:flex hover:bg-gray-100 rounded-lg"
+              >
+                <User className="h-5 w-5 text-gray-600" />
+              </Button>
+
+              {/* Cart */}
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={() => setIsCartOpen(true)} 
+                className="relative hover:bg-gray-100 rounded-lg"
+              >
+                <ShoppingCart className="h-5 w-5 text-gray-600" />
                 {itemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                  <Badge className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs bg-green-600 hover:bg-green-600">
                     {itemCount}
-                  </span>
+                  </Badge>
                 )}
-                <span className="sr-only">Open cart</span>
+              </Button>
+
+              {/* Mobile Menu */}
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+                className="lg:hidden hover:bg-gray-100 rounded-lg"
+              >
+                <Menu className="h-5 w-5 text-gray-600" />
               </Button>
             </div>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="lg:hidden border-t border-gray-100 py-4">
+              <nav className="flex flex-col space-y-2">
+                {navLinks.map((link) => (
+                  <Link 
+                    key={`mobile-${link.href}-${link.label}`} 
+                    href={link.href} 
+                    className="text-sm font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-lg hover:bg-green-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+              {/* Mobile Search */}
+              <div className="relative mt-4">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <Input 
+                  placeholder="Search products..." 
+                  className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-gray-50 focus:bg-white text-sm" 
+                />
+              </div>
+            </div>
+          )}
         </div>
       </header>
       <CartSheet open={isCartOpen} onOpenChange={setIsCartOpen} />
