@@ -23,7 +23,7 @@ interface ClientOnlyProps {
   fallback?: React.ReactNode;
 }
 
-export function ClientOnly({ children, fallback = null }: ClientOnlyProps) {
+export function ClientOnly({ children, fallback = null }: ClientOnlyProps): JSX.Element {
   const isMounted = useIsMounted();
 
   if (!isMounted) {
