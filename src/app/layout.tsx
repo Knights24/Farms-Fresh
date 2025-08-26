@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import { CartProvider } from '@/context/cart-context';
+import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
   title: 'Farm Fresh',
@@ -29,11 +30,7 @@ export default function RootLayout({
             <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
               {children}
             </main>
-            <footer className="bg-secondary/50 py-4">
-              <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-secondary-foreground">
-                <p>&copy; {new Date().getFullYear()} Farm Fresh. All rights reserved.</p>
-              </div>
-            </footer>
+            <Footer />
           </div>
           <Toaster />
         </CartProvider>
