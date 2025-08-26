@@ -11,6 +11,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/orders', label: 'Track Orders' },
   { href: '/recipes', label: 'Recipes' },
+  { href: '/image-generator', label: 'Image Generator' },
 ];
 
 export default function Header() {

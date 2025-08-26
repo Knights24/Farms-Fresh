@@ -46,7 +46,7 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
                     />
                     <div className="flex-grow">
                       <p className="font-medium">{item.name}</p>
-                      <p className="text-sm text-muted-foreground">${item.price.toFixed(2)}</p>
+                      <p className="text-sm text-muted-foreground">₹{item.price.toFixed(2)}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <Input
@@ -69,7 +69,7 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
               <div className="w-full space-y-4">
                 <div className="flex justify-between font-semibold text-lg">
                   <span>Total</span>
-                  <span>${cartTotal.toFixed(2)}</span>
+                  <span>₹{cartTotal.toFixed(2)}</span>
                 </div>
                 <div className="flex gap-2">
                    <Button variant="outline" className="w-full" onClick={clearCart}>Clear Cart</Button>

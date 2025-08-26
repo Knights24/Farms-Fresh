@@ -40,7 +40,7 @@ export default function ProduceCard({ produce }: ProduceCardProps) {
       </CardContent>
       <CardFooter className="p-4 pt-0 flex items-center justify-between">
         <p className="text-lg font-semibold text-primary-foreground">
-          ${produce.price.toFixed(2)}
+          ₹{produce.price.toFixed(2)}
           <span className="text-sm font-normal text-muted-foreground"> / {produce.unit}</span>
         </p>
         <Button size="sm" onClick={() => addToCart(produce)} className="bg-accent hover:bg-accent/90 text-accent-foreground">

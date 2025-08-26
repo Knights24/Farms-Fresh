@@ -50,7 +50,7 @@ export default function OrdersPage() {
                       </p>
                     </div>
                     <p className="font-semibold">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ₹{(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
                 ))}
@@ -63,7 +63,7 @@ export default function OrdersPage() {
                  </div>
                  <div className="text-right">
                     <p className="text-sm font-medium">Order Total</p>
-                    <p className="text-lg font-bold">${order.total.toFixed(2)}</p>
+                    <p className="text-lg font-bold">₹{order.total.toFixed(2)}</p>
                  </div>
               </div>
             </CardContent>
