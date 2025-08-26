@@ -5,7 +5,8 @@ import { ShoppingCart, Heart, Star, Plus } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { useCart } from '@/context/cart-context';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useToast } from '@/hooks/use-toast';
 import type { Produce } from '@/types';
 
 interface ProduceCardProps {
@@ -15,18 +16,57 @@ interface ProduceCardProps {
 
 export default function ProduceCard({ produce, variant = 'default' }: ProduceCardProps) {
   const { addToCart } = useCart();
+  const { toast } = useToast();
   const [isLiked, setIsLiked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Check if item is in wishlist on component mount
+  useEffect(() => {
+    const savedWishlist = localStorage.getItem('wishlist');
+    if (savedWishlist) {
+      const wishlistIds = JSON.parse(savedWishlist);
+      setIsLiked(wishlistIds.includes(produce.id));
+    }
+  }, [produce.id]);
 
   const handleAddToCart = async () => {
     setIsLoading(true);
     try {
       addToCart(produce);
+      toast({
+        title: "Added to cart",
+        description: `${produce.name} has been added to your cart.`,
+      });
       // Add a small delay for better UX
       await new Promise(resolve => setTimeout(resolve, 300));
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const toggleWishlist = () => {
+    const savedWishlist = localStorage.getItem('wishlist');
+    let wishlistIds = savedWishlist ? JSON.parse(savedWishlist) : [];
+    
+    if (isLiked) {
+      // Remove from wishlist
+      wishlistIds = wishlistIds.filter((id: string) => id !== produce.id);
+      setIsLiked(false);
+      toast({
+        title: "Removed from wishlist",
+        description: `${produce.name} has been removed from your wishlist.`,
+      });
+    } else {
+      // Add to wishlist
+      wishlistIds.push(produce.id);
+      setIsLiked(true);
+      toast({
+        title: "Added to wishlist",
+        description: `${produce.name} has been added to your wishlist.`,
+      });
+    }
+    
+    localStorage.setItem('wishlist', JSON.stringify(wishlistIds));
   };
 
   if (variant === 'compact') {
@@ -45,7 +85,7 @@ export default function ProduceCard({ produce, variant = 'default' }: ProduceCar
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setIsLiked(!isLiked)}
+            onClick={toggleWishlist}
             className="absolute top-3 right-3 w-8 h-8 bg-white/90 hover:bg-white rounded-full"
           >
             <Heart className={`w-4 h-4 ${isLiked ? 'fill-red-500 text-red-500' : 'text-gray-600'}`} />
@@ -93,7 +133,7 @@ export default function ProduceCard({ produce, variant = 'default' }: ProduceCar
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => setIsLiked(!isLiked)}
+          onClick={toggleWishlist}
           className="absolute top-4 right-4 w-10 h-10 bg-white/90 hover:bg-white rounded-full"
         >
           <Heart className={`w-5 h-5 ${isLiked ? 'fill-red-500 text-red-500' : 'text-gray-600'}`} />

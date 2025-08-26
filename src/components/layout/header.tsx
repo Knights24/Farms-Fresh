@@ -2,13 +2,21 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Leaf, ShoppingCart, Search, Menu, User } from 'lucide-react';
+import { Leaf, ShoppingCart, Search, Menu, User, LogOut, Settings, Heart, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import CartSheet from '@/components/cart-sheet';
 import { useCart } from '@/context/cart-context';
 import { useState } from 'react';
 import { Input } from '../ui/input';
 import { Badge } from '../ui/badge';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -21,6 +29,14 @@ export default function Header() {
   const { itemCount } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      window.location.href = `/products?search=${encodeURIComponent(searchTerm.trim())}`;
+    }
+  };
 
   return (
     <>
@@ -57,13 +73,15 @@ export default function Header() {
 
             {/* Search Bar (Desktop) */}
             <div className="hidden lg:flex lg:items-center lg:gap-4">
-              <div className="relative">
+              <form onSubmit={handleSearch} className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input 
                   placeholder="Search products..." 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-64 pl-9 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-gray-50 focus:bg-white text-sm" 
                 />
-              </div>
+              </form>
             </div>
 
             {/* Right Actions */}
@@ -78,13 +96,44 @@ export default function Header() {
               </Button>
 
               {/* User Account */}
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="hidden sm:flex hover:bg-gray-100 rounded-lg"
-              >
-                <User className="h-5 w-5 text-gray-600" />
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="hidden sm:flex hover:bg-gray-100 rounded-lg"
+                  >
+                    <User className="h-5 w-5 text-gray-600" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/orders" className="cursor-pointer">
+                      <Package className="mr-2 h-4 w-4" />
+                      <span>My Orders</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/wishlist" className="cursor-pointer">
+                      <Heart className="mr-2 h-4 w-4" />
+                      <span>Wishlist</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/account" className="cursor-pointer">
+                      <Settings className="mr-2 h-4 w-4" />
+                      <span>Account Settings</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="cursor-pointer text-red-600 focus:text-red-600">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Sign Out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
               {/* Cart */}
               <Button 
@@ -127,15 +176,50 @@ export default function Header() {
                     {link.label}
                   </Link>
                 ))}
+                
+                {/* Mobile User Profile Section */}
+                <div className="border-t border-gray-100 mt-4 pt-4">
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-3 mb-2">Account</p>
+                  <Link 
+                    href="/orders"
+                    className="flex items-center text-sm font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-lg hover:bg-green-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Package className="mr-2 h-4 w-4" />
+                    My Orders
+                  </Link>
+                  <Link 
+                    href="/wishlist"
+                    className="flex items-center text-sm font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-lg hover:bg-green-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Heart className="mr-2 h-4 w-4" />
+                    Wishlist
+                  </Link>
+                  <Link 
+                    href="/account"
+                    className="flex items-center text-sm font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-lg hover:bg-green-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Settings className="mr-2 h-4 w-4" />
+                    Account Settings
+                  </Link>
+                  <button className="flex items-center w-full text-sm font-medium text-red-600 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50 mt-2">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </button>
+                </div>
               </nav>
               {/* Mobile Search */}
-              <div className="relative mt-4">
+              <form onSubmit={handleSearch} className="relative mt-4">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input 
                   placeholder="Search products..." 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent bg-gray-50 focus:bg-white text-sm" 
                 />
-              </div>
+              </form>
             </div>
           )}
         </div>

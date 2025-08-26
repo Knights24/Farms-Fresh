@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Search, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -18,10 +19,19 @@ import {
 const categories = ['All', 'Vegetables', 'Fruits', 'Herbs', 'Dairy'];
 const sortOptions = ['Name A-Z', 'Name Z-A', 'Price Low-High', 'Price High-Low'];
 
-export default function ProductsPage() {
+function ProductsContent() {
+  const searchParams = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('Name A-Z');
+
+  // Handle URL search parameters
+  useEffect(() => {
+    const urlSearch = searchParams.get('search');
+    if (urlSearch) {
+      setSearchTerm(urlSearch);
+    }
+  }, [searchParams]);
 
   const filteredAndSortedProduce = produce
     .filter(item => {
@@ -210,5 +220,18 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600 mx-auto mb-4"></div>
+        <p className="text-gray-600">Loading products...</p>
+      </div>
+    </div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }
