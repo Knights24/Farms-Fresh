@@ -12,10 +12,9 @@ import { Badge } from '../ui/badge';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/recipes', label: 'Shop' },
-  { href: '/recipes', label: 'Categories' },
+  { href: '/products', label: 'Shop' },
   { href: '/orders', label: 'Orders' },
-  { href: '#', label: 'About' },
+  { href: '#about', label: 'About' },
 ];
 
 export default function Header() {

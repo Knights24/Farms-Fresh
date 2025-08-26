@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import {
   Sheet,
   SheetContent,
@@ -10,7 +11,6 @@ import {
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/cart-context';
-import { ScrollArea } from './ui/scroll-area';
 import { Separator } from './ui/separator';
 import { Input } from './ui/input';
 import { Trash2, ShoppingBag } from 'lucide-react';
@@ -25,14 +25,14 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
   const { cartItems, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
 
   return (
-    <Sheet open={open} onOpen-change={onOpenChange}>
+    <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="flex flex-col">
         <SheetHeader>
           <SheetTitle>Your Cart</SheetTitle>
         </SheetHeader>
         {cartItems.length > 0 ? (
           <>
-            <ScrollArea className="flex-grow pr-4 -mr-6">
+            <div className="flex-grow pr-4 -mr-6 max-h-96 overflow-y-auto">
               <div className="space-y-4">
                 {cartItems.map((item) => (
                   <div key={item.id} className="flex items-center gap-4">
@@ -63,7 +63,7 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
                   </div>
                 ))}
               </div>
-            </ScrollArea>
+            </div>
             <Separator className="my-4" />
             <SheetFooter className="mt-auto">
               <div className="w-full space-y-4">
@@ -74,7 +74,11 @@ export default function CartSheet({ open, onOpenChange }: CartSheetProps) {
                 <div className="flex gap-2">
                    <Button variant="outline" className="w-full" onClick={clearCart}>Clear Cart</Button>
                    <SheetClose asChild>
-                    <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">Checkout</Button>
+                    <Link href="/checkout" className="w-full">
+                      <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                        Checkout
+                      </Button>
+                    </Link>
                    </SheetClose>
                 </div>
               </div>

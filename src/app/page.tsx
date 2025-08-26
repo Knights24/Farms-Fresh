@@ -123,7 +123,7 @@ export default function Home() {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category) => (
-              <Link href="/recipes" key={category.name} className="group">
+              <Link href="/products" key={category.name} className="group">
                 <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                   <div className="relative aspect-square">
                     <Image
@@ -193,10 +193,12 @@ export default function Home() {
           </div>
           
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg" className="rounded-full">
-              View All Products
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            <Link href="/products">
+              <Button variant="outline" size="lg" className="rounded-full">
+                View All Products
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -225,6 +227,85 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900">Quality Guarantee</h3>
               <p className="text-gray-600">100% satisfaction guarantee or your money back, no questions asked</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <Badge variant="secondary" className="mb-4">Our Story</Badge>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                From Local Farms to Your Table
+              </h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Founded with a passion for fresh, organic produce, Farm Fresh connects you directly with local farmers who share our commitment to quality and sustainability.
+              </p>
+              <p className="text-gray-600 mb-8">
+                We work exclusively with certified organic farms, ensuring that every product meets our high standards for freshness, taste, and nutritional value. Our mission is simple: to make premium organic produce accessible and affordable for everyone.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                    <Leaf className="w-4 h-4 text-green-600" />
+                  </div>
+                  <span className="text-gray-700">Direct partnerships with 50+ local organic farms</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                    <Star className="w-4 h-4 text-green-600" />
+                  </div>
+                  <span className="text-gray-700">Over 10,000 satisfied customers served</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                    <ShoppingCart className="w-4 h-4 text-green-600" />
+                  </div>
+                  <span className="text-gray-700">Zero-waste packaging and carbon-neutral delivery</span>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="relative w-full h-[400px] rounded-3xl overflow-hidden shadow-2xl">
+                <Image 
+                  src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=400&fit=crop&auto=format"
+                  alt="Local farm with fresh produce"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-20 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Stay Fresh with Our Newsletter
+            </h2>
+            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+              Get weekly updates on new arrivals, seasonal produce, exclusive offers, and healthy recipes straight to your inbox.
+            </p>
+            <div className="max-w-md mx-auto">
+              <div className="flex gap-2">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
+                />
+                <Button className="bg-green-600 hover:bg-green-700">
+                  Subscribe
+                </Button>
+              </div>
+              <p className="text-xs text-gray-400 mt-3">
+                No spam, unsubscribe at any time. Privacy policy applies.
+              </p>
             </div>
           </div>
         </div>

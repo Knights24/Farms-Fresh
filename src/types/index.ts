@@ -12,8 +12,11 @@ export type CartItem = {
   id: string;
   name: string;
   price: number;
+  unit: string;
   quantity: number;
   imageUrl: string;
+  category: string;
+  description: string;
 };
 
 export type Order = {

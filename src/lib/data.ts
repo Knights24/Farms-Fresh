@@ -198,8 +198,18 @@ export const orders: Order[] = [
     status: 'Out for Delivery',
     estimatedDelivery: 'Today, 4:30 PM',
     items: [
-      { id: '1', name: 'Fresh Mangoes', price: 150, quantity: 2, imageUrl: 'https://picsum.photos/400/301' },
-      { id: '3', name: 'Paneer', price: 400, quantity: 1, imageUrl: 'https://picsum.photos/400/303' },
+      {
+        id: '1', name: 'Fresh Mangoes', price: 150, quantity: 2, imageUrl: 'https://picsum.photos/400/301',
+        unit: '',
+        category: '',
+        description: ''
+      },
+      {
+        id: '3', name: 'Paneer', price: 400, quantity: 1, imageUrl: 'https://picsum.photos/400/303',
+        unit: '',
+        category: '',
+        description: ''
+      },
     ],
     total: 700,
   },
@@ -209,7 +219,12 @@ export const orders: Order[] = [
     status: 'Delivered',
     estimatedDelivery: 'July 15, 2024',
     items: [
-      { id: '2', name: 'Okra (Bhindi)', price: 60, quantity: 1, imageUrl: 'https://picsum.photos/400/302' },
+      {
+        id: '2', name: 'Okra (Bhindi)', price: 60, quantity: 1, imageUrl: 'https://picsum.photos/400/302',
+        unit: '',
+        category: '',
+        description: ''
+      },
     ],
     total: 60,
   },
