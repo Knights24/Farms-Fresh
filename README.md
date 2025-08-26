@@ -1,4 +1,4 @@
-# 🌱 Farm Fresh - Premium Organic Produce Delivery
+# 🌱 Farm Fresh
 
 ![Farm Fresh Logo](./public/images/logo.svg)
 

@@ -47,7 +47,7 @@ FreshFarm/
 ## 🌐 Features Included in Landing Page
 
 - **Responsive Design** - Works on all devices
-- **SEO Optimized** - Meta tags, Open Graph, Twitter Cards
+- **SEO Optimized** - Meta tags, Open Graph tags
 - **Fast Loading** - Optimized CSS and minimal JavaScript
 - **Interactive Elements** - Smooth scrolling, animations
 - **Product Showcase** - Preview of fresh produce

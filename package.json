@@ -1,7 +1,7 @@
 {
   "name": "farm-fresh",
   "version": "1.0.0",
-  "description": "Premium organic produce delivery platform - Fresh, organic produce delivered straight from trusted local farms to your doorstep",
+  "description": "Fresh produce delivery platform - Fresh, organic produce delivered straight from trusted local farms to your doorstep",
   "private": true,
   "homepage": "https://farmfresh.com",
   "repository": {
