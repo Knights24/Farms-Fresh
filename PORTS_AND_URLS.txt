@@ -1,0 +1,462 @@
+===============================================================================
+                    FARM FRESH - IMPORTANT PORTS & URLS REFERENCE
+===============================================================================
+
+📅 Last Updated: August 27, 2025
+🏷️  Application: Farm Fresh Agricultural E-Commerce Platform
+🌐 Repository: https://github.com/Knights24/Farms-Fresh
+👥 Team: Vivek Vishwakarma, Simit Modi, Tejas Luhar
+
+===============================================================================
+🌍 PRODUCTION DEPLOYMENT (VERCEL)
+===============================================================================
+
+🔗 Main Production URL:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app
+
+🏠 Homepage:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/
+
+🛍️ Products Catalog:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/products
+
+🔧 Admin Login:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/admin/login
+
+📊 Admin Dashboard:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/admin/dashboard
+
+📝 Admin Products Management:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/admin/products
+
+📋 Admin Orders Management:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/admin/orders
+
+🛒 Checkout Page:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/checkout
+
+📦 Orders Tracking:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/orders
+
+❤️ Wishlist:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/wishlist
+
+👤 Account Management:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/account
+
+ℹ️ About Page:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/about
+
+💼 Investors Page:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/investors
+
+🔬 Technology Page:
+   https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/technology
+
+===============================================================================
+💻 LOCAL DEVELOPMENT SERVERS
+===============================================================================
+
+🚀 Development Server (Next.js with Turbopack):
+   Port: 9002
+   URL:  http://localhost:9002
+   Command: npm run dev
+
+🏭 Production Server (Next.js Production Build):
+   Port: 3000
+   URL:  http://localhost:3000
+   Command: npm run build && npm start
+
+📱 Alternative Development Port (if 9002 is busy):
+   Port: 3001
+   URL:  http://localhost:3001
+   Command: npm run dev -- -p 3001
+
+===============================================================================
+🏠 LOCAL APPLICATION URLS (Development)
+===============================================================================
+
+🏠 Homepage:
+   http://localhost:9002/
+
+🛍️ Products Catalog:
+   http://localhost:9002/products
+
+🔧 Admin Login:
+   http://localhost:9002/admin/login
+
+📊 Admin Dashboard:
+   http://localhost:9002/admin/dashboard
+
+📝 Admin Products Management:
+   http://localhost:9002/admin/products
+
+📋 Admin Orders Management:
+   http://localhost:9002/admin/orders
+
+🛒 Checkout Page:
+   http://localhost:9002/checkout
+
+📦 Orders Tracking:
+   http://localhost:9002/orders
+
+❤️ Wishlist:
+   http://localhost:9002/wishlist
+
+👤 Account Management:
+   http://localhost:9002/account
+
+ℹ️ About Page:
+   http://localhost:9002/about
+
+💼 Investors Page:
+   http://localhost:9002/investors
+
+🔬 Technology Page:
+   http://localhost:9002/technology
+
+🍽️ Recipes (AI-powered):
+   http://localhost:9002/recipes
+
+🎨 Image Generator:
+   http://localhost:9002/image-generator
+
+===============================================================================
+🔧 DEVELOPMENT & DEBUG TOOLS (Local)
+===============================================================================
+
+🌱 Database Seeder (Creates admin user & sample data):
+   http://localhost:9002/seed-data.html
+
+🗄️ MongoDB Viewer (Browse database contents):
+   http://localhost:9002/view-mongodb.html
+
+👤 Admin Debug Panel (User management tools):
+   http://localhost:9002/admin-debug.html
+
+🔐 Login Test Tool (Test authentication):
+   http://localhost:9002/login-test.html
+
+🌐 Simple Seed HTML:
+   http://localhost:9002/seed.html
+
+===============================================================================
+📡 API ENDPOINTS (Local Development)
+===============================================================================
+
+🔐 AUTHENTICATION APIs:
+   POST http://localhost:9002/api/auth/login
+   POST http://localhost:9002/api/auth/register
+   POST http://localhost:9002/api/auth/login-new
+
+🛍️ PRODUCT APIs:
+   GET  http://localhost:9002/api/products
+   GET  http://localhost:9002/api/products/[id]
+
+🛒 ORDER APIs:
+   GET  http://localhost:9002/api/orders
+   POST http://localhost:9002/api/checkout
+
+👥 USER APIs:
+   GET  http://localhost:9002/api/debug-users
+
+🔧 ADMIN APIs:
+   GET  http://localhost:9002/api/admin/dashboard
+   GET  http://localhost:9002/api/admin/products
+   POST http://localhost:9002/api/admin/products
+   GET  http://localhost:9002/api/admin/orders
+   POST http://localhost:9002/api/admin/seed
+
+🌱 DATABASE UTILITIES:
+   POST http://localhost:9002/api/seed-fake-data
+   GET  http://localhost:9002/api/test-db
+   GET  http://localhost:9002/api/view-mongodb
+   POST http://localhost:9002/api/create-admin
+
+🎨 AI FEATURES:
+   POST http://localhost:9002/api/generate-image
+
+🌾 SEEDING APIs:
+   POST http://localhost:9002/api/seed
+   POST http://localhost:9002/api/admin/seed
+
+===============================================================================
+📡 API ENDPOINTS (Production - Vercel)
+===============================================================================
+
+🔐 AUTHENTICATION APIs:
+   POST https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/auth/login
+   POST https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/auth/register
+
+🛍️ PRODUCT APIs:
+   GET  https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/products
+   GET  https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/products/[id]
+
+🛒 ORDER APIs:
+   GET  https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/orders
+   POST https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/checkout
+
+🔧 ADMIN APIs:
+   GET  https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/admin/dashboard
+   GET  https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/admin/products
+   POST https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/admin/products
+   GET  https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/admin/orders
+
+🌱 DATABASE UTILITIES:
+   POST https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/seed-fake-data
+   GET  https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/debug-users
+   GET  https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app/api/view-mongodb
+
+===============================================================================
+🗄️ DATABASE CONFIGURATION
+===============================================================================
+
+🌐 MongoDB Atlas Cluster:
+   Host: farmsfresh.g2aokc0.mongodb.net
+   Port: 27017 (Default MongoDB Port)
+   Database: farmfresh
+   Username: farmfresh
+   Password: farmfresh123
+
+🔗 Full Connection String:
+   mongodb+srv://farmfresh:farmfresh123@farmsfresh.g2aokc0.mongodb.net/farmfresh?retryWrites=true&w=majority
+
+📊 Collections:
+   - users (User accounts and authentication)
+   - products (Product catalog and inventory)
+   - orders (Order management and tracking)
+   - categories (Product categorization)
+
+🌐 MongoDB Atlas Web Interface:
+   https://cloud.mongodb.com/
+   Login to browse collections and documents
+
+💻 MongoDB Compass (Desktop):
+   Download: https://www.mongodb.com/try/download/compass
+   Connect using the connection string above
+
+===============================================================================
+🔐 DEFAULT CREDENTIALS
+===============================================================================
+
+👨‍💼 ADMIN ACCOUNT:
+   Email:    admin@farmfresh.com
+   Password: admin123
+   Role:     admin
+   Access:   Full administrative privileges
+
+👤 CUSTOMER ACCOUNT:
+   Email:    customer@farmfresh.com
+   Password: customer123
+   Role:     customer
+   Access:   Shopping and order management
+
+💡 Note: These credentials work on both local development and production environments
+        after database seeding is completed.
+
+===============================================================================
+⚙️ DEVELOPMENT COMMANDS & PORTS
+===============================================================================
+
+🚀 Start Development Server:
+   Command: npm run dev
+   Port:    9002
+   URL:     http://localhost:9002
+
+🏗️ Build Production:
+   Command: npm run build
+   Output:  .next/ directory
+
+🏭 Start Production Server:
+   Command: npm start
+   Port:    3000
+   URL:     http://localhost:3000
+
+🔍 Type Checking:
+   Command: npm run type-check
+
+🎨 Linting:
+   Command: npm run lint
+
+🧪 Run Tests:
+   Command: npm test
+
+📦 Install Dependencies:
+   Command: npm install
+
+===============================================================================
+☁️ DEPLOYMENT PLATFORMS
+===============================================================================
+
+🚀 VERCEL (Primary Deployment):
+   Platform:     Vercel
+   CLI Command:  vercel --prod
+   Environment:  Production, Preview, Development
+   URL:          https://farm-fresh-io2dp8qqy-knight-igris-projects.vercel.app
+
+📱 ALTERNATIVE PLATFORMS:
+   - Netlify:     Port 3000 (after build)
+   - AWS Amplify: Port 3000 (after build)
+   - Google Cloud Run: Configurable port
+   - Azure Static Web Apps: Port 3000 (after build)
+   - Railway:     Port from environment variable
+   - Render:      Port 10000 (default)
+
+===============================================================================
+🌍 ENVIRONMENT VARIABLES
+===============================================================================
+
+Required for all environments:
+   MONGODB_URI    = mongodb+srv://farmfresh:farmfresh123@farmsfresh.g2aokc0.mongodb.net/farmfresh?retryWrites=true&w=majority
+   JWT_SECRET     = your-super-secret-jwt-key-change-in-production-farmsfresh-2024
+   JWT_EXPIRES_IN = 7d
+
+Optional (for extended features):
+   SMTP_HOST      = smtp.gmail.com
+   SMTP_PORT      = 587
+   SMTP_USER      = your-email@gmail.com
+   SMTP_PASS      = your-app-password
+   RAZORPAY_KEY_ID      = your-razorpay-key-id
+   RAZORPAY_KEY_SECRET  = your-razorpay-key-secret
+
+===============================================================================
+🔧 PORT CONFIGURATION NOTES
+===============================================================================
+
+🔄 Port Conflicts Resolution:
+   - If 9002 is busy: Use npm run dev -- -p 3001
+   - If 3000 is busy: Use npm start -- -p 3001
+   - Environment variable: PORT=4000 npm start
+
+🌐 Network Access:
+   Local Development:  localhost only
+   Production Vercel:  Global CDN access
+   LAN Access:         Use 0.0.0.0:9002
+
+🔒 Firewall Considerations:
+   - Allow inbound: Port 9002 (development)
+   - Allow inbound: Port 3000 (production)
+   - MongoDB Atlas: IP whitelist required
+
+===============================================================================
+🐛 TROUBLESHOOTING COMMON PORT ISSUES
+===============================================================================
+
+❌ "Port 9002 already in use":
+   Solution: pkill -f "next" && npm run dev
+   Alternative: npm run dev -- -p 3001
+
+❌ "EADDRINUSE: address already in use":
+   Check: netstat -ano | findstr :9002
+   Kill: taskkill /PID <pid> /F
+
+❌ "Cannot connect to localhost:9002":
+   Check: Server is running (npm run dev)
+   Check: Firewall settings
+   Check: Browser cache (hard refresh)
+
+❌ Database connection failed:
+   Check: MONGODB_URI in .env.local
+   Check: MongoDB Atlas IP whitelist
+   Check: Network connectivity
+
+===============================================================================
+📞 SUPPORT CONTACTS
+===============================================================================
+
+🔧 Technical Support:
+   Email:    developers@farmsfresh.com
+   GitHub:   https://github.com/Knights24/Farms-Fresh/issues
+
+💼 Business Inquiries:
+   Email:    contact@farmsfresh.com
+   Phone:    +91-9876543210
+
+💰 Investment Opportunities:
+   Email:    investors@farmsfresh.com
+   LinkedIn: https://linkedin.com/company/farm-fresh-platform
+
+===============================================================================
+📝 QUICK REFERENCE COMMANDS
+===============================================================================
+
+Start Fresh Development:
+   git clone https://github.com/Knights24/Farms-Fresh.git
+   cd FreshFarm
+   npm install
+   cp .env.example .env.local
+   npm run dev
+   Open: http://localhost:9002/seed-data.html
+
+Seed Database:
+   Visit: http://localhost:9002/seed-data.html
+   Click: "🌱 Seed Database"
+   Login: admin@farmfresh.com / admin123
+
+Deploy to Production:
+   vercel login
+   vercel env add MONGODB_URI production
+   vercel env add JWT_SECRET production
+   vercel --prod
+
+Emergency Reset:
+   rm -rf .next node_modules
+   npm install
+   npm run dev
+
+===============================================================================
+📊 PERFORMANCE MONITORING PORTS
+===============================================================================
+
+📈 Next.js Bundle Analyzer (when enabled):
+   Port: 8888
+   URL:  http://localhost:8888
+
+🔍 React DevTools (browser extension):
+   Available in development mode
+
+📊 MongoDB Compass Monitoring:
+   Real-time performance metrics via desktop app
+
+===============================================================================
+🔐 SECURITY CONSIDERATIONS
+===============================================================================
+
+🚨 Never expose these in production:
+   - Database passwords in URLs
+   - JWT secrets in client-side code
+   - Admin endpoints without authentication
+
+✅ Security best practices:
+   - Use environment variables for secrets
+   - Enable CORS properly for APIs
+   - Validate all user inputs
+   - Use HTTPS in production
+   - Keep dependencies updated
+
+===============================================================================
+📅 MAINTENANCE SCHEDULE
+===============================================================================
+
+Daily:
+   - Check application logs
+   - Monitor database performance
+   - Review error reports
+
+Weekly:
+   - Update dependencies (npm audit)
+   - Review security alerts
+   - Backup database
+
+Monthly:
+   - Performance optimization
+   - Security audit
+   - Feature updates deployment
+
+===============================================================================
+
+🎯 END OF PORTS & URLS REFERENCE
+📧 For updates or additions, contact: developers@farmsfresh.com
+🌱 Farm Fresh - Cultivating the future of agriculture through technology
+
+===============================================================================
