@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Input } from '@/components/ui/input';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, Truck, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
@@ -205,11 +205,11 @@ function ProductsContent() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <div className="flex items-center text-green-100">
-              <span className="text-2xl font-bold mr-2">🚚</span>
+              <Truck className="w-6 h-6 mr-2" />
               Free delivery on orders over ₹500
             </div>
             <div className="flex items-center text-green-100">
-              <span className="text-2xl font-bold mr-2">🌱</span>
+              <Leaf className="w-6 h-6 mr-2" />
               100% Organic & Fresh
             </div>
             <div className="flex items-center text-green-100">

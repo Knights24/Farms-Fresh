@@ -11,7 +11,7 @@ export default function AboutPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            🌱 About Farm Fresh
+             About Farms Fresh
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Your trusted partner for fresh, organic produce delivered straight from local farms to your doorstep. 
@@ -24,7 +24,7 @@ export default function AboutPage() {
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
             <p className="text-gray-600 mb-4">
-              At Farm Fresh, we believe everyone deserves access to the freshest, highest-quality produce. 
+              At Farms Fresh, we believe everyone deserves access to the freshest, highest-quality produce. 
               We work directly with local farmers to bring you seasonal fruits and vegetables at their peak 
               flavor and nutritional value.
             </p>
@@ -55,7 +55,7 @@ export default function AboutPage() {
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <CardContent>
-                <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <Users className="h-12 w-12 text-green-600 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Community First</h3>
                 <p className="text-gray-600">
                   Supporting local farmers and building stronger food communities
@@ -65,7 +65,7 @@ export default function AboutPage() {
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <CardContent>
-                <Truck className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+                <Truck className="h-12 w-12 text-green-600 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Fast Delivery</h3>
                 <p className="text-gray-600">
                   Farm-to-door delivery within 24 hours to ensure maximum freshness
@@ -75,7 +75,7 @@ export default function AboutPage() {
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <CardContent>
-                <Award className="h-12 w-12 text-yellow-600 mx-auto mb-4" />
+                <Award className="h-12 w-12 text-green-600 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Quality Promise</h3>
                 <p className="text-gray-600">
                   100% satisfaction guarantee or your money back, no questions asked
@@ -93,7 +93,7 @@ export default function AboutPage() {
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
             <p className="text-gray-600 mb-4">
-              Founded in Gujarat, India, Farm Fresh started with a simple idea: what if everyone could enjoy 
+              Founded in Gujarat, India, Farms Fresh started with a simple idea: what if everyone could enjoy 
               the same fresh, delicious produce that farmers feed their own families?
             </p>
             <p className="text-gray-600 mb-4">
@@ -156,7 +156,7 @@ export default function AboutPage() {
         {/* Contact CTA */}
         <div className="text-center bg-white rounded-lg p-8 shadow-md">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Ready to Experience Farm Fresh?
+            Ready to Experience Farms Fresh?
           </h2>
           <p className="text-gray-600 mb-6">
             Join thousands of satisfied customers who trust us for their daily fresh produce needs.

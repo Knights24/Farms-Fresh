@@ -13,12 +13,12 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Farm Fresh',
+  title: 'Farms Fresh',
   description: 'Fresh, organic produce delivered straight from trusted local farms to your doorstep. Quality guaranteed, freshness assured.',
   keywords: 'organic produce, fresh vegetables, farm fresh, organic fruits, local farms, grocery delivery',
-  authors: [{ name: 'Farm Fresh Team' }],
+  authors: [{ name: 'Farms Fresh Team' }],
   openGraph: {
-    title: 'Farm Fresh',
+    title: 'Farms Fresh',
     description: 'Fresh, organic produce delivered straight from trusted local farms to your doorstep.',
     type: 'website',
     images: ['/images/logo.svg?v=2'],

@@ -16,12 +16,12 @@ export default function Footer() {
               <div className="relative w-10 h-10">
                 <Image
                   src="/images/logo.svg?v=2"
-                  alt="Farm Fresh Logo"
+                  alt="Farms Fresh Logo"
                   fill
                   className="object-contain brightness-0 invert"
                 />
               </div>
-              <span className="text-xl font-bold">Farm Fresh</span>
+              <span className="text-xl font-bold">Farms Fresh</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               Your trusted partner for fresh, organic produce delivered straight from local farms to your doorstep. 
@@ -97,7 +97,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} Farm Fresh. All rights reserved.
+              © {new Date().getFullYear()} Farms Fresh. All rights reserved.
             </p>
           </div>
         </div>

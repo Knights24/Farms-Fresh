@@ -22,6 +22,8 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Shop' },
   { href: '/orders', label: 'Orders' },
+  { href: '/technology', label: 'AI Technology' },
+  { href: '/investors', label: 'Investors' },
   { href: '/about', label: 'About' },
 ];
 
@@ -49,12 +51,12 @@ export default function Header() {
                 <div className="relative w-10 h-10">
                   <Image
                     src="/images/logo.svg?v=2"
-                    alt="Farm Fresh Logo"
+                    alt="Farms Fresh Logo"
                     fill
                     className="object-contain"
                   />
                 </div>
-                Farm Fresh
+                Farms Fresh
               </Link>
             </div>
 
