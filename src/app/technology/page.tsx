@@ -330,7 +330,7 @@ export default function TechnologyPage() {
           <div className="text-center">
             <Link href="/investors">
               <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                Learn More About Investment Opportunity
+                Learn More About Partnership
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>

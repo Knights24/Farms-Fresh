@@ -24,19 +24,19 @@ export default function InvestorsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <Badge className="mb-4 bg-green-600 hover:bg-green-700">
-              Investment Opportunity
+              Partnership Opportunity
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Farms Fresh
-              <span className="text-green-600"> Investment</span>
+              <span className="text-green-600"> Partnership</span>
             </h1>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-8">
-              Join us in revolutionizing Indian agriculture with AI. We're seeking ₹50-75 lakhs in seed funding 
-              to scale our technology platform and empower farmers across India.
+              Join us in revolutionizing Indian agriculture with AI. Partner with us to scale our technology platform 
+              and empower farmers across India with sustainable growth.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Badge variant="outline" className="text-base py-2 px-4 bg-white/90 text-green-800 border-green-200">
-                Seed Stage Ready
+                Growth Stage Platform
               </Badge>
               <Badge variant="outline" className="text-base py-2 px-4 bg-white/90 text-green-800 border-green-200">
                 AgriTech + AI
@@ -232,12 +232,12 @@ export default function InvestorsPage() {
                 </div>
 
                 <div className="bg-green-50/80 backdrop-blur-sm p-4 rounded-lg border border-green-200/50">
-                  <h4 className="font-bold text-green-800 mb-2">Quick Facts</h4>
+                  <h4 className="font-bold text-green-800 mb-2">Platform Status</h4>
                   <ul className="text-sm text-green-700 space-y-1">
-                    <li>• Seeking: ₹50-75 lakhs seed investment</li>
-                    <li>• Stage: Early-stage MVP development</li>
-                    <li>• Market: Gujarat pilot → Multi-city expansion</li>
-                    <li>• Timeline: 18-24 months to Series A</li>
+                    <li>• Status: Live production platform</li>
+                    <li>• Stage: Growth-ready technology</li>
+                    <li>• Market: Gujarat operations → Multi-city expansion</li>
+                    <li>• Timeline: Scaling operations and partnerships</li>
                   </ul>
                 </div>
               </CardContent>

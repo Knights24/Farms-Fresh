@@ -1,4 +1,8 @@
-# Farms Fresh
+# Fa## 🌐 Live Demo
+
+**[View Live Application →](https://farm-fresh-fcl4l1gun-knight-igris-projects.vercel.app)**
+
+**Local Development:** http://localhost:9002 Fresh
 
 **Professional farm-to-table platform connecting consumers with fresh, organic produce through modern technology.**
 
@@ -40,9 +44,7 @@ npm run dev
 - **Deployment:** Vercel-ready configuration
 - **Database:** Firebase integration ready
 
-## Investment Opportunity
-
-**Seed Funding Round:** ₹50-75 Lakhs
+## Market Position
 
 ### Market Opportunity
 - **₹4.6 Trillion** Indian agriculture market
