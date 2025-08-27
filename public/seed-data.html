@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seed Fake Data</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .header { background: #28a745; color: white; padding: 20px; border-radius: 8px; text-align: center; }
+        .section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; }
+        button { padding: 12px 24px; background-color: #007bff; color: white; border: none; cursor: pointer; border-radius: 4px; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        button.danger { background-color: #dc3545; }
+        button.danger:hover { background-color: #c82333; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 4px; }
+        .success { border: 1px solid #28a745; background-color: #d4edda; color: #155724; }
+        .error { border: 1px solid #dc3545; background-color: #f8d7da; color: #721c24; }
+        .loading { border: 1px solid #17a2b8; background-color: #d1ecf1; color: #0c5460; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .data-table th, .data-table td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        .data-table th { background-color: #e9ecef; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚜 Farm Fresh - Database Seeder</h1>
+        <p>Create sample data for testing MongoDB and local admin</p>
+    </div>
+    
+    <div class="section">
+        <h2>🌱 Seed Database with Sample Data</h2>
+        <p>This will create:</p>
+        <ul>
+            <li><strong>Admin User:</strong> admin@farmfresh.com / admin123</li>
+            <li><strong>Customer User:</strong> customer@farmfresh.com / customer123</li>
+            <li><strong>8 Sample Products:</strong> Vegetables, Fruits, and Dairy items</li>
+        </ul>
+        <button onclick="seedDatabase()">🌱 Seed Database</button>
+        <button onclick="testLogin()" class="success" style="background-color: #28a745; margin-left: 10px;">🔐 Test Admin Login</button>
+    </div>
+    
+    <div class="section">
+        <h2>🔧 Quick Actions</h2>
+        <button onclick="window.open('/admin/login', '_blank')">🚪 Open Admin Panel</button>
+        <button onclick="window.open('/products', '_blank')" style="background-color: #17a2b8; margin-left: 10px;">🛍️ View Products</button>
+        <button onclick="debugDatabase()" style="background-color: #6c757d; margin-left: 10px;">🔍 Debug Database</button>
+    </div>
+    
+    <div id="result" class="result" style="display: none;"></div>
+    
+    <script>
+        async function seedDatabase() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result loading';
+            resultDiv.innerHTML = '🌱 Seeding database with sample data...';
+            
+            try {
+                const response = await fetch('/api/seed-fake-data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Database Seeded Successfully!</h3>
+                        
+                        <h4>👥 Users Created:</h4>
+                        <table class="data-table">
+                            <tr><th>Role</th><th>Email</th><th>Password</th></tr>
+                            <tr><td>Admin</td><td>${data.data.users.admin.email}</td><td>${data.data.users.admin.password}</td></tr>
+                            <tr><td>Customer</td><td>${data.data.users.customer.email}</td><td>${data.data.users.customer.password}</td></tr>
+                        </table>
+                        
+                        <h4>🛍️ Products Created:</h4>
+                        <p><strong>Total:</strong> ${data.data.products.total} products</p>
+                        <p><strong>Categories:</strong> ${data.data.products.categories.join(', ')}</p>
+                        
+                        <h4>✅ Tests:</h4>
+                        <p><strong>Database Connection:</strong> ${data.data.tests.databaseConnection}</p>
+                        <p><strong>Admin Password Works:</strong> ${data.data.tests.adminPasswordWorks ? '✅ Yes' : '❌ No'}</p>
+                        
+                        <hr>
+                        <p><strong>🚀 Ready to use!</strong></p>
+                        <p>You can now login to the admin panel with: <strong>admin@farmfresh.com / admin123</strong></p>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `
+                        <h3>❌ Seeding Failed</h3>
+                        <p><strong>Error:</strong> ${data.error}</p>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <h3>❌ Network Error</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                `;
+            }
+        }
+        
+        async function testLogin() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result loading';
+            resultDiv.innerHTML = '🔐 Testing admin login...';
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        email: 'admin@farmfresh.com', 
+                        password: 'admin123' 
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Admin Login Test Successful!</h3>
+                        <table class="data-table">
+                            <tr><th>Field</th><th>Value</th></tr>
+                            <tr><td>Name</td><td>${data.data.user.name}</td></tr>
+                            <tr><td>Email</td><td>${data.data.user.email}</td></tr>
+                            <tr><td>Role</td><td>${data.data.user.role}</td></tr>
+                            <tr><td>Token</td><td>${data.data.token.substring(0, 50)}...</td></tr>
+                        </table>
+                        <p><strong>🎉 Login system is working perfectly!</strong></p>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `
+                        <h3>❌ Login Test Failed</h3>
+                        <p><strong>Error:</strong> ${data.error}</p>
+                        <p><em>Try seeding the database first!</em></p>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <h3>❌ Network Error</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                `;
+            }
+        }
+        
+        async function debugDatabase() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result loading';
+            resultDiv.innerHTML = '🔍 Debugging database...';
+            
+            try {
+                const response = await fetch('/api/debug-users');
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result';
+                    resultDiv.style.border = '1px solid #6c757d';
+                    resultDiv.style.backgroundColor = '#f8f9fa';
+                    resultDiv.innerHTML = `
+                        <h3>🔍 Database Debug Info</h3>
+                        <p><strong>Total Users:</strong> ${data.data.totalUsers}</p>
+                        <p><strong>Admin User Exists:</strong> ${data.data.adminUserExists ? '✅ Yes' : '❌ No'}</p>
+                        
+                        <h4>User List:</h4>
+                        <pre style="background: #e9ecef; padding: 10px; border-radius: 4px; font-size: 12px;">${JSON.stringify(data.data.users, null, 2)}</pre>
+                        
+                        ${data.data.passwordCheck ? `
+                        <h4>Password Check:</h4>
+                        <pre style="background: #e9ecef; padding: 10px; border-radius: 4px; font-size: 12px;">${JSON.stringify(data.data.passwordCheck, null, 2)}</pre>
+                        ` : ''}
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `
+                        <h3>❌ Debug Failed</h3>
+                        <p><strong>Error:</strong> ${data.error}</p>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <h3>❌ Network Error</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

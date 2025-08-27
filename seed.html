@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database Seeder</title>
+</head>
+<body>
+    <h1>Database Seeder</h1>
+    <button id="seedBtn">Seed Database</button>
+    <div id="result"></div>
+    
+    <script>
+        document.getElementById('seedBtn').addEventListener('click', async () => {
+            const result = document.getElementById('result');
+            result.innerHTML = 'Seeding database...';
+            
+            try {
+                const response = await fetch('/api/admin/seed', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                result.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                result.innerHTML = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

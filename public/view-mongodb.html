@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MongoDB Data Viewer</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 1000px; margin: 0 auto; }
+        .header { background: #00684A; color: white; padding: 20px; border-radius: 8px; text-align: center; }
+        .section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; }
+        .method { margin: 15px 0; padding: 15px; border-left: 4px solid #007bff; background: white; }
+        .code { background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; border: 1px solid #ddd; }
+        .button { padding: 10px 20px; background: #28a745; color: white; border: none; cursor: pointer; border-radius: 4px; margin: 5px; }
+        .button.primary { background: #007bff; }
+        .button.danger { background: #dc3545; }
+        .result { margin-top: 15px; padding: 15px; border-radius: 4px; max-height: 400px; overflow-y: auto; }
+        .success { border: 1px solid #28a745; background: #d4edda; }
+        .info { border: 1px solid #17a2b8; background: #d1ecf1; }
+        pre { white-space: pre-wrap; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🗄️ MongoDB Data Viewer</h1>
+        <p>View your Farm Fresh data directly from MongoDB Atlas</p>
+    </div>
+
+    <div class="section">
+        <h2>🌐 Method 1: MongoDB Atlas Web Interface</h2>
+        <div class="method">
+            <h3>Step-by-Step Guide:</h3>
+            <ol>
+                <li><strong>Go to MongoDB Atlas:</strong> <a href="https://cloud.mongodb.com/" target="_blank">https://cloud.mongodb.com/</a></li>
+                <li><strong>Login with your credentials</strong></li>
+                <li><strong>Select your cluster:</strong> "farmsfresh"</li>
+                <li><strong>Click "Browse Collections"</strong></li>
+                <li><strong>Select database:</strong> "farmfresh"</li>
+                <li><strong>View collections:</strong> users, products, orders</li>
+            </ol>
+            <button class="button primary" onclick="window.open('https://cloud.mongodb.com/', '_blank')">🌐 Open MongoDB Atlas</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🔧 Method 2: API Endpoints (Current Page)</h2>
+        <div class="method">
+            <h3>View All Collections:</h3>
+            <button class="button" onclick="viewUsers()">👥 View Users</button>
+            <button class="button" onclick="viewProducts()">🛍️ View Products</button>
+            <button class="button" onclick="viewStats()">📊 View Statistics</button>
+            <button class="button danger" onclick="clearResults()">🗑️ Clear Results</button>
+        </div>
+        <div id="results"></div>
+    </div>
+
+    <div class="section">
+        <h2>💻 Method 3: MongoDB Compass (Desktop App)</h2>
+        <div class="method">
+            <h3>Connection String:</h3>
+            <div class="code">
+                mongodb+srv://farmfresh:farmfresh123@farmsfresh.g2aokc0.mongodb.net/farmfresh?retryWrites=true&w=majority
+            </div>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Download <a href="https://www.mongodb.com/try/download/compass" target="_blank">MongoDB Compass</a></li>
+                <li>Install and open the application</li>
+                <li>Paste the connection string above</li>
+                <li>Click "Connect"</li>
+                <li>Browse your "farmfresh" database</li>
+            </ol>
+            <button class="button primary" onclick="window.open('https://www.mongodb.com/try/download/compass', '_blank')">📥 Download Compass</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>⚡ Method 4: Direct Database Queries</h2>
+        <div class="method">
+            <h3>Sample MongoDB Queries:</h3>
+            <div class="code">
+// Find all users
+db.users.find({})
+
+// Find admin users
+db.users.find({role: "admin"})
+
+// Find all products
+db.products.find({})
+
+// Find products by category
+db.products.find({category: "Vegetables"})
+
+// Count documents
+db.users.countDocuments()
+db.products.countDocuments()
+            </div>
+            <button class="button" onclick="showAdvancedQueries()">🔍 Show Advanced Queries</button>
+        </div>
+    </div>
+
+    <script>
+        async function viewUsers() {
+            showLoading('Fetching users...');
+            try {
+                const response = await fetch('/api/debug-users');
+                const data = await response.json();
+                
+                if (data.success) {
+                    showResult('Users Collection', `
+                        <h4>👥 Total Users: ${data.data.totalUsers}</h4>
+                        <h5>User Details:</h5>
+                        <pre>${JSON.stringify(data.data.users, null, 2)}</pre>
+                        ${data.data.passwordCheck ? `
+                        <h5>Password Check:</h5>
+                        <pre>${JSON.stringify(data.data.passwordCheck, null, 2)}</pre>
+                        ` : ''}
+                    `);
+                } else {
+                    showError('Failed to fetch users', data.error);
+                }
+            } catch (error) {
+                showError('Network Error', error.message);
+            }
+        }
+
+        async function viewProducts() {
+            showLoading('Fetching products...');
+            try {
+                const response = await fetch('/api/products');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const products = data.data;
+                    showResult('Products Collection', `
+                        <h4>🛍️ Total Products: ${products.length}</h4>
+                        <h5>Product List:</h5>
+                        <div style="max-height: 300px; overflow-y: auto;">
+                            ${products.map(product => `
+                                <div style="border: 1px solid #ddd; margin: 10px 0; padding: 10px; border-radius: 4px;">
+                                    <strong>${product.name}</strong> - ₹${product.price}/${product.unit}<br>
+                                    <small>Category: ${product.category} | Stock: ${product.stock} | Active: ${product.isActive ? '✅' : '❌'}</small><br>
+                                    <small>Description: ${product.description}</small>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <h5>Raw JSON Data:</h5>
+                        <pre style="font-size: 10px;">${JSON.stringify(products, null, 2)}</pre>
+                    `);
+                } else {
+                    showError('Failed to fetch products', data.error);
+                }
+            } catch (error) {
+                showError('Network Error', error.message);
+            }
+        }
+
+        async function viewStats() {
+            showLoading('Calculating statistics...');
+            try {
+                // Get users
+                const usersResponse = await fetch('/api/debug-users');
+                const usersData = await usersResponse.json();
+                
+                // Get products
+                const productsResponse = await fetch('/api/products');
+                const productsData = await productsResponse.json();
+                
+                if (usersData.success && productsData.success) {
+                    const users = usersData.data.users;
+                    const products = productsData.data;
+                    
+                    // Calculate stats
+                    const usersByRole = users.reduce((acc, user) => {
+                        acc[user.role] = (acc[user.role] || 0) + 1;
+                        return acc;
+                    }, {});
+                    
+                    const productsByCategory = products.reduce((acc, product) => {
+                        acc[product.category] = (acc[product.category] || 0) + 1;
+                        return acc;
+                    }, {});
+                    
+                    const totalStock = products.reduce((sum, product) => sum + product.stock, 0);
+                    const avgPrice = products.reduce((sum, product) => sum + product.price, 0) / products.length;
+                    
+                    showResult('Database Statistics', `
+                        <h4>📊 Database Overview</h4>
+                        
+                        <h5>👥 Users by Role:</h5>
+                        <ul>
+                            ${Object.entries(usersByRole).map(([role, count]) => `<li>${role}: ${count}</li>`).join('')}
+                        </ul>
+                        
+                        <h5>🛍️ Products by Category:</h5>
+                        <ul>
+                            ${Object.entries(productsByCategory).map(([category, count]) => `<li>${category}: ${count} products</li>`).join('')}
+                        </ul>
+                        
+                        <h5>💰 Financial Overview:</h5>
+                        <ul>
+                            <li>Total Products: ${products.length}</li>
+                            <li>Total Stock Units: ${totalStock}</li>
+                            <li>Average Price: ₹${avgPrice.toFixed(2)}</li>
+                            <li>Active Products: ${products.filter(p => p.isActive).length}</li>
+                        </ul>
+                        
+                        <h5>🔗 Database Connection:</h5>
+                        <ul>
+                            <li>MongoDB Atlas: ✅ Connected</li>
+                            <li>Database: farmfresh</li>
+                            <li>Collections: users, products</li>
+                        </ul>
+                    `);
+                } else {
+                    showError('Failed to calculate stats', 'Could not fetch data');
+                }
+            } catch (error) {
+                showError('Network Error', error.message);
+            }
+        }
+
+        function showAdvancedQueries() {
+            showResult('Advanced MongoDB Queries', `
+                <h4>🔍 Advanced Query Examples</h4>
+                
+                <h5>User Queries:</h5>
+                <div class="code">
+// Find users created today
+db.users.find({createdAt: {$gte: new Date(new Date().setHours(0,0,0,0))}})
+
+// Find all admin users with email
+db.users.find({role: "admin"}, {name: 1, email: 1, role: 1})
+
+// Count users by role
+db.users.aggregate([
+    {$group: {_id: "$role", count: {$sum: 1}}}
+])
+                </div>
+                
+                <h5>Product Queries:</h5>
+                <div class="code">
+// Find products with low stock (less than 20)
+db.products.find({stock: {$lt: 20}})
+
+// Find expensive products (over ₹100)
+db.products.find({price: {$gt: 100}})
+
+// Products by category with sorting
+db.products.find({category: "Vegetables"}).sort({price: -1})
+
+// Average price by category
+db.products.aggregate([
+    {$group: {_id: "$category", avgPrice: {$avg: "$price"}}}
+])
+                </div>
+                
+                <h5>Update Operations:</h5>
+                <div class="code">
+// Update product stock
+db.products.updateOne({name: "Fresh Tomatoes"}, {$set: {stock: 100}})
+
+// Deactivate out of stock products
+db.products.updateMany({stock: 0}, {$set: {isActive: false}})
+
+// Add new field to all products
+db.products.updateMany({}, {$set: {featured: false}})
+                </div>
+                
+                <p><strong>🎯 Pro Tip:</strong> Use these queries in MongoDB Compass or Atlas web interface!</p>
+            `);
+        }
+
+        function showLoading(message) {
+            const results = document.getElementById('results');
+            results.innerHTML = `
+                <div class="result info">
+                    <h4>⏳ Loading...</h4>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        function showResult(title, content) {
+            const results = document.getElementById('results');
+            results.innerHTML = `
+                <div class="result success">
+                    <h4>✅ ${title}</h4>
+                    ${content}
+                </div>
+            `;
+        }
+
+        function showError(title, error) {
+            const results = document.getElementById('results');
+            results.innerHTML = `
+                <div class="result" style="border: 1px solid #dc3545; background: #f8d7da;">
+                    <h4>❌ ${title}</h4>
+                    <p>${error}</p>
+                </div>
+            `;
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

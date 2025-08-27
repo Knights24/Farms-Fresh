@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Admin User</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { padding: 10px 20px; background-color: #dc3545; color: white; border: none; cursor: pointer; margin: 10px; }
+        .result { margin-top: 20px; padding: 15px; border: 1px solid #ddd; background-color: #f8f9fa; }
+        .success { border-color: #28a745; background-color: #d4edda; }
+        .error { border-color: #dc3545; background-color: #f8d7da; }
+    </style>
+</head>
+<body>
+    <h1>Admin User Management</h1>
+    
+    <button onclick="createAdmin()">Recreate Admin User</button>
+    <button onclick="debugUsers()">Debug Users</button>
+    <button onclick="testLogin()">Test Login</button>
+    
+    <div id="result" class="result" style="display: none;"></div>
+    
+    <script>
+        async function createAdmin() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = 'Creating admin user...';
+            
+            try {
+                const response = await fetch('/api/create-admin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Admin User Created Successfully!</h3>
+                        <p><strong>Email:</strong> admin@farmfresh.com</p>
+                        <p><strong>Password:</strong> admin123</p>
+                        <p><strong>User ID:</strong> ${data.data.userId}</p>
+                        <p><strong>Password Test:</strong> ${data.data.passwordTest ? '✅ Working' : '❌ Failed'}</p>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `<h3>❌ Error:</h3><p>${data.error}</p>`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `<h3>❌ Network Error:</h3><p>${error.message}</p>`;
+            }
+        }
+        
+        async function debugUsers() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = 'Getting user information...';
+            
+            try {
+                const response = await fetch('/api/debug-users');
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <h3>👥 Users in Database:</h3>
+                        <p><strong>Total Users:</strong> ${data.data.totalUsers}</p>
+                        <p><strong>Admin Exists:</strong> ${data.data.adminUserExists ? '✅ Yes' : '❌ No'}</p>
+                        <h4>User List:</h4>
+                        <pre>${JSON.stringify(data.data.users, null, 2)}</pre>
+                        ${data.data.passwordCheck ? `
+                        <h4>Password Check:</h4>
+                        <pre>${JSON.stringify(data.data.passwordCheck, null, 2)}</pre>
+                        ` : ''}
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `<h3>❌ Error:</h3><p>${data.error}</p>`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `<h3>❌ Network Error:</h3><p>${error.message}</p>`;
+            }
+        }
+        
+        async function testLogin() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = 'Testing login...';
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        email: 'admin@farmfresh.com', 
+                        password: 'admin123' 
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Login Successful!</h3>
+                        <p><strong>User:</strong> ${data.data.user.name}</p>
+                        <p><strong>Email:</strong> ${data.data.user.email}</p>
+                        <p><strong>Role:</strong> ${data.data.user.role}</p>
+                        <p><strong>Token:</strong> ${data.data.token.substring(0, 50)}...</p>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `
+                        <h3>❌ Login Failed</h3>
+                        <p><strong>Error:</strong> ${data.error}</p>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `<h3>❌ Network Error:</h3><p>${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
