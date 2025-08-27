@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Input } from '@/components/ui/input';
 import { Search, ArrowRight, Leaf, ShoppingCart, Star, Camera, TrendingUp, Truck, Sprout } from 'lucide-react';
@@ -5,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { produce } from '@/lib/data';
 import Link from 'next/link';
+import { useCart } from '@/context/cart-context';
 
 const featuredProducts = produce.slice(0, 6);
 const categories = [
@@ -37,6 +40,8 @@ const stats = [
 ];
 
 export default function Home() {
+  const { addToCart } = useCart();
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -183,7 +188,7 @@ export default function Home() {
                       ₹{product.price}
                       <span className="text-sm font-normal text-gray-600">/{product.unit}</span>
                     </div>
-                    <Button size="sm" className="rounded-full">
+                    <Button size="sm" className="rounded-full" onClick={() => addToCart(product)}>
                       <ShoppingCart className="w-4 h-4 mr-2" />
                       Add
                     </Button>
