@@ -117,10 +117,10 @@ export default function AboutPage() {
                 <div className="w-24 h-24 bg-gradient-to-br from-green-200 to-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <Users className="h-12 w-12 text-gray-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Development Team</h3>
-                <p className="text-green-600 font-medium mb-2">Full-Stack Developers</p>
+                <h3 className="text-xl font-semibold mb-2">Creator & Developer</h3>
+                <p className="text-green-600 font-medium mb-2">Vivek Vishwakarma</p>
                 <p className="text-gray-600">
-                  Passionate about sustainable agriculture and connecting communities through technology.
+                  Sole creator of this entire platform - designed, developed, and implemented every feature from concept to deployment.
                 </p>
               </CardContent>
             </Card>

@@ -102,12 +102,12 @@ export default function InvestorsPage() {
             <Card className="hover:shadow-xl transition-all">
               <CardHeader>
                 <Users className="h-12 w-12 text-green-600 mb-4" />
-                <CardTitle className="text-xl">Development Team</CardTitle>
+                <CardTitle className="text-xl">Project Creator</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>Full-Stack Development</strong> - Next.js & TypeScript</li>
-                  <li>• <strong>AI Integration</strong> - Machine Learning Solutions</li>
+                  <li>• <strong>Sole Developer</strong> - Created entire platform independently</li>
+                  <li>• <strong>Full-Stack Expertise</strong> - Next.js, TypeScript, MongoDB</li>
                   <li>• <strong>Database Architecture</strong> - MongoDB & Cloud Systems</li>
                   <li>• Modern web technologies and agricultural solutions</li>
                   <li>• Strong technical implementation and scalable design</li>
@@ -170,12 +170,12 @@ export default function InvestorsPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="text-center mb-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Development Team</h3>
-                  <p className="text-gray-600 mb-4">Technical Skills</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Creator & Developer</h3>
+                  <p className="text-gray-600 mb-4">Vivek Vishwakarma - Technical Skills</p>
                   <div className="grid grid-cols-1 gap-4 mt-6">
                     <div className="text-center p-3 bg-gray-50 rounded-lg">
                       <h4 className="font-bold text-gray-900">Full-Stack Development</h4>
-                      <p className="text-sm text-green-600">Next.js & TypeScript</p>
+                      <p className="text-sm text-green-600">Complete platform architecture</p>
                     </div>
                     <div className="text-center p-3 bg-gray-50 rounded-lg">
                       <h4 className="font-bold text-gray-900">AI Integration</h4>

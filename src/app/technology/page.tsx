@@ -251,15 +251,15 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      {/* Development Team */}
+      {/* Project Creator */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Development Team
+              Project Creator
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Skilled developers with expertise in modern web technologies and agricultural solutions
+              Sole creator and developer - designed and built every aspect of this platform from concept to deployment
             </p>
           </div>
           
