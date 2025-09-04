@@ -24,25 +24,25 @@ export default function InvestorsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <Badge className="mb-4 bg-green-600 hover:bg-green-700">
-              Partnership Opportunity
+              Portfolio Project
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Farms Fresh
-              <span className="text-green-600"> Partnership</span>
+              <span className="text-green-600"> Project</span>
             </h1>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-8">
-              Join us in revolutionizing Indian agriculture with AI. Partner with us to scale our technology platform 
-              and empower farmers across India with sustainable growth.
+              A comprehensive agricultural e-commerce platform demonstrating modern web development skills, 
+              AI integration, and cloud deployment capabilities.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Badge variant="outline" className="text-base py-2 px-4 bg-white/90 text-green-800 border-green-200">
-                Growth Stage Platform
+                Full-Stack Development
               </Badge>
               <Badge variant="outline" className="text-base py-2 px-4 bg-white/90 text-green-800 border-green-200">
-                AgriTech + AI
+                AgriTech + AI Demo
               </Badge>
               <Badge variant="outline" className="text-base py-2 px-4 bg-white/90 text-green-800 border-green-200">
-                Early Stage
+                Portfolio Project
               </Badge>
             </div>
           </div>
@@ -102,15 +102,15 @@ export default function InvestorsPage() {
             <Card className="hover:shadow-xl transition-all">
               <CardHeader>
                 <Users className="h-12 w-12 text-green-600 mb-4" />
-                <CardTitle className="text-xl">Founding Team</CardTitle>
+                <CardTitle className="text-xl">Development Team</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• <strong>Vivek Vishwakarma</strong> - Founder & CTO</li>
-                  <li>• <strong>Simit Modi</strong> - Co-Founder</li>
-                  <li>• <strong>Tejas Luhar</strong> - Co-Founder</li>
-                  <li>• BTech students from Gujarat with AI/ML expertise</li>
-                  <li>• Strong technical and business execution focus</li>
+                  <li>• <strong>Full-Stack Development</strong> - Next.js & TypeScript</li>
+                  <li>• <strong>AI Integration</strong> - Machine Learning Solutions</li>
+                  <li>• <strong>Database Architecture</strong> - MongoDB & Cloud Systems</li>
+                  <li>• Modern web technologies and agricultural solutions</li>
+                  <li>• Strong technical implementation and scalable design</li>
                 </ul>
               </CardContent>
             </Card>
@@ -170,20 +170,20 @@ export default function InvestorsPage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="text-center mb-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Founding Team</h3>
-                  <p className="text-gray-600 mb-4">3 Co-Founders</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Development Team</h3>
+                  <p className="text-gray-600 mb-4">Technical Skills</p>
                   <div className="grid grid-cols-1 gap-4 mt-6">
                     <div className="text-center p-3 bg-gray-50 rounded-lg">
-                      <h4 className="font-bold text-gray-900">Vivek Vishwakarma</h4>
-                      <p className="text-sm text-green-600">Founder & CTO</p>
+                      <h4 className="font-bold text-gray-900">Full-Stack Development</h4>
+                      <p className="text-sm text-green-600">Next.js & TypeScript</p>
                     </div>
                     <div className="text-center p-3 bg-gray-50 rounded-lg">
-                      <h4 className="font-bold text-gray-900">Simit Modi</h4>
-                      <p className="text-sm text-green-600">Co-Founder</p>
+                      <h4 className="font-bold text-gray-900">AI Integration</h4>
+                      <p className="text-sm text-green-600">Machine Learning</p>
                     </div>
                     <div className="text-center p-3 bg-gray-50 rounded-lg">
-                      <h4 className="font-bold text-gray-900">Tejas Luhar</h4>
-                      <p className="text-sm text-green-600">Co-Founder</p>
+                      <h4 className="font-bold text-gray-900">Database Design</h4>
+                      <p className="text-sm text-green-600">MongoDB Atlas</p>
                     </div>
                   </div>
                 </div>
@@ -191,30 +191,30 @@ export default function InvestorsPage() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <Mail className="h-5 w-5 text-green-600" />
-                    <span className="text-gray-700">vivekvishwakarma21@outlook.com</span>
+                    <span className="text-gray-700">project@farmfresh.demo</span>
                   </div>
                   
                   <div className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-green-600" />
-                    <span className="text-gray-700">+91 9328797168</span>
+                    <span className="text-gray-700">Portfolio Project</span>
                   </div>
                   
                   <div className="flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-green-600" />
-                    <span className="text-gray-700">Ahmedabad, Gujarat, India</span>
+                    <span className="text-gray-700">Web Development Project</span>
                   </div>
 
                   <div className="mt-6 p-4 bg-green-50 rounded-lg">
-                    <h4 className="font-bold text-green-800 mb-2">Team Contact</h4>
+                    <h4 className="font-bold text-green-800 mb-2">Project Details</h4>
                     <p className="text-sm text-green-700">
-                      Primary contact: Vivek Vishwakarma (Founder & CTO)<br/>
-                      All co-founders available for investor meetings
+                      Full-stack agricultural e-commerce platform<br/>
+                      Demonstrating modern web development skills
                     </p>
                   </div>
                 </div>
 
                 <div className="border-t pt-6 mt-6">
-                  <h4 className="font-bold text-gray-900 mb-4">Investment Documents</h4>
+                  <h4 className="font-bold text-gray-900 mb-4">Project Resources</h4>
                   <div className="space-y-3">
                     <Button variant="outline" className="w-full justify-start">
                       <Download className="h-4 w-4 mr-2" />

@@ -9,7 +9,7 @@ export const produce: Produce[] = [
     unit: 'kg',
     imageUrl: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?w=500&h=500&fit=crop',
     category: 'Vegetables',
-    description: 'Premium organic tomatoes, vine-ripened for the perfect balance of sweetness and acidity.',
+    description: 'Premium organic tomatoes, vine-ripened for the perfect balance of sweetness and acidity.',   
   },
   {
     id: '2',
@@ -120,7 +120,7 @@ export const produce: Produce[] = [
     price: 120,
     unit: 'dozen',
     imageUrl: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=500&h=500&fit=crop',
-    category: 'Dairy',
+    category: 'Dairy & Eggs',
     description: 'Free-range eggs from local farms, rich in protein and nutrients.',
   },
   {
@@ -129,7 +129,7 @@ export const produce: Produce[] = [
     price: 80,
     unit: 'liter',
     imageUrl: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=500&h=500&fit=crop',
-    category: 'Dairy',
+    category: 'Dairy & Eggs',
     description: 'Pure organic milk from grass-fed cows, rich and creamy.',
   },
   {
@@ -138,7 +138,7 @@ export const produce: Produce[] = [
     price: 150,
     unit: 'pack',
     imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500&h=500&fit=crop',
-    category: 'Dairy',
+    category: 'Dairy & Eggs',
     description: 'Thick, creamy Greek yogurt packed with probiotics and protein.',
   },
   {
@@ -147,7 +147,7 @@ export const produce: Produce[] = [
     price: 350,
     unit: 'kg',
     imageUrl: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?w=500&h=500&fit=crop',
-    category: 'Dairy',
+    category: 'Dairy & Eggs',
     description: 'Handcrafted artisan cheese with rich, complex flavors.',
   },
 
@@ -158,7 +158,7 @@ export const produce: Produce[] = [
     price: 250,
     unit: 'jar',
     imageUrl: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&h=500&fit=crop',
-    category: 'Pantry',
+    category: 'Pantry Essentials',
     description: 'Pure organic honey from local beekeepers, unprocessed and natural.',
   },
   {
@@ -167,7 +167,7 @@ export const produce: Produce[] = [
     price: 400,
     unit: 'bottle',
     imageUrl: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&h=500&fit=crop',
-    category: 'Pantry',
+    category: 'Pantry Essentials',
     description: 'Cold-pressed extra virgin olive oil, perfect for cooking and salads.',
   },
   {
@@ -176,7 +176,7 @@ export const produce: Produce[] = [
     price: 180,
     unit: 'kg',
     imageUrl: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500&h=500&fit=crop',
-    category: 'Pantry',
+    category: 'Pantry Essentials',
     description: 'Protein-rich quinoa seeds, a versatile superfood for healthy meals.',
   },
   {
@@ -185,47 +185,98 @@ export const produce: Produce[] = [
     price: 600,
     unit: 'kg',
     imageUrl: 'https://images.unsplash.com/photo-1529258283598-8d6fe60b27f4?w=500&h=500&fit=crop',
-    category: 'Pantry',
+    category: 'Pantry Essentials',
     description: 'Premium quality almonds, rich in healthy fats and protein.',
   },
 ];
 
-
+// Sample orders data
 export const orders: Order[] = [
   {
-    id: 'FF1024',
-    date: '2024-07-20',
-    status: 'Out for Delivery',
-    estimatedDelivery: 'Today, 4:30 PM',
+    id: 'ORD001',
     items: [
-      {
-        id: '1', name: 'Fresh Mangoes', price: 150, quantity: 2, imageUrl: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=500&h=500&fit=crop',
-        unit: '',
-        category: '',
-        description: ''
+      { 
+        id: '1', 
+        name: 'Fresh Tomatoes', 
+        quantity: 2, 
+        price: 40,
+        unit: 'kg',
+        imageUrl: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&q=80&w=500&h=500',
+        category: 'Vegetables',
+        description: 'Fresh red tomatoes perfect for curries, dal, and Indian cooking.'
       },
-      {
-        id: '3', name: 'Paneer', price: 400, quantity: 1, imageUrl: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500&h=500&fit=crop',
-        unit: '',
-        category: '',
-        description: ''
+      { 
+        id: '2', 
+        name: 'Onions', 
+        quantity: 3, 
+        price: 30,
+        unit: 'kg',
+        imageUrl: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&q=80&w=500&h=500',
+        category: 'Vegetables',
+        description: 'Essential red onions for Indian cooking, sabzi, and curries.'
       },
     ],
-    total: 700,
+    total: 170,
+    status: 'Delivered',
+    date: '2024-01-15',
+    estimatedDelivery: '2024-01-16',
   },
   {
-    id: 'FF1023',
-    date: '2024-07-15',
-    status: 'Delivered',
-    estimatedDelivery: 'July 15, 2024',
+    id: 'ORD002',
     items: [
-      {
-        id: '2', name: 'Okra (Bhindi)', price: 60, quantity: 1, imageUrl: 'https://images.unsplash.com/photo-1599081595671-302974ec5021?w=500&h=500&fit=crop',
-        unit: '',
-        category: '',
-        description: ''
+      { 
+        id: '21', 
+        name: 'Mangoes (Alphonso)', 
+        quantity: 1, 
+        price: 300,
+        unit: 'kg',
+        imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=500&h=500',
+        category: 'Fruits',
+        description: 'Premium Alphonso mangoes, the king of fruits in India.'
+      },
+      { 
+        id: '54', 
+        name: 'Basmati Rice', 
+        quantity: 2, 
+        price: 120,
+        unit: 'kg',
+        imageUrl: 'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&q=80&w=500&h=500',
+        category: 'Pantry Essentials',
+        description: 'Premium basmati rice perfect for biryanis and pulao.'
       },
     ],
-    total: 60,
+    total: 540,
+    status: 'Processing',
+    date: '2024-01-20',
+    estimatedDelivery: '2024-01-22',
+  },
+  {
+    id: 'ORD003',
+    items: [
+      { 
+        id: '40', 
+        name: 'Paneer', 
+        quantity: 1, 
+        price: 300,
+        unit: 'kg',
+        imageUrl: 'https://images.unsplash.com/photo-1559181567-c3190ca9959b?auto=format&fit=crop&q=80&w=500&h=500',
+        category: 'Dairy & Eggs',
+        description: 'Fresh homemade paneer perfect for Indian curries and dishes.'
+      },
+      { 
+        id: '55', 
+        name: 'Wheat Flour (Atta)', 
+        quantity: 5, 
+        price: 40,
+        unit: 'kg',
+        imageUrl: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=500&h=500',
+        category: 'Pantry Essentials',
+        description: 'Fresh wheat flour (atta) for rotis, parathas, and Indian breads.'
+      },
+    ],
+    total: 500,
+    status: 'Processing',
+    date: '2024-01-18',
+    estimatedDelivery: '2024-01-20',
   },
 ];

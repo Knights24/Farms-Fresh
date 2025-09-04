@@ -1,35 +1,36 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Input } from '@/components/ui/input';
-import { Search, ArrowRight, Leaf, ShoppingCart, Star, Camera, TrendingUp, Truck, Sprout } from 'lucide-react';
+import { Search, ArrowRight, Leaf, ShoppingCart, Star, Camera, TrendingUp, Truck, Sprout, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { produce } from '@/lib/data';
 import Link from 'next/link';
 import { useCart } from '@/context/cart-context';
 
-const featuredProducts = produce.slice(0, 6);
 const categories = [
   { 
     name: 'Fresh Vegetables', 
-    image: 'https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?w=300&h=300&fit=crop&auto=format',
-    count: produce.filter(p => p.category === 'Vegetables').length
+    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=300&h=300',
+    count: 20
   },
   { 
     name: 'Dairy & Eggs', 
-    image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=300&fit=crop&auto=format',
-    count: produce.filter(p => p.category === 'Dairy').length
+    image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&q=80&w=300&h=300',
+    count: 15
   },
   { 
     name: 'Fresh Fruits', 
-    image: 'https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=300&h=300&fit=crop&auto=format',
-    count: produce.filter(p => p.category === 'Fruits').length
+    image: 'https://images.unsplash.com/photo-1553575604-75c3e73ce8b4?auto=format&fit=crop&q=80&w=300&h=300',
+    count: 18
   },
   { 
     name: 'Pantry Essentials', 
-    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=300&fit=crop&auto=format',
-    count: produce.filter(p => p.category === 'Pantry').length
+    image: 'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&q=80&w=300&h=300',
+    count: 17
   }
 ];
 
@@ -41,6 +42,82 @@ const stats = [
 
 export default function Home() {
   const { addToCart } = useCart();
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchSuggestions, setSearchSuggestions] = useState<typeof produce>([]);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedSearch = searchTerm.trim();
+    if (trimmedSearch) {
+      // Save to localStorage for search history (optional)
+      const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+      const updatedHistory = [trimmedSearch, ...searchHistory.filter((item: string) => item !== trimmedSearch)].slice(0, 5);
+      localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
+      
+      router.push(`/products?search=${encodeURIComponent(trimmedSearch)}`);
+    } else {
+      router.push('/products');
+    }
+    setShowSuggestions(false);
+  };
+
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    
+    // Show suggestions when typing
+    if (value.trim().length > 0) {
+      const suggestions = produce.filter(item => 
+        item.name.toLowerCase().includes(value.toLowerCase()) ||
+        item.description.toLowerCase().includes(value.toLowerCase())
+      ).slice(0, 5); // Limit to 5 suggestions
+      setSearchSuggestions(suggestions);
+      setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false);
+      setSearchSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (productName: string) => {
+    setSearchTerm(productName);
+    setShowSuggestions(false);
+    router.push(`/products?search=${encodeURIComponent(productName)}`);
+  };
+
+  const handleSearchFocus = () => {
+    if (searchTerm.trim().length > 0) {
+      setShowSuggestions(true);
+    }
+  };
+
+  const handleSearchBlur = () => {
+    // Delay hiding suggestions to allow clicking on them
+    setTimeout(() => setShowSuggestions(false), 200);
+  };
+
+  const clearSearch = () => {
+    setSearchTerm('');
+    setShowSuggestions(false);
+    setSearchSuggestions([]);
+  };
+
+  const handleQuickSearch = () => {
+    if (searchTerm.trim()) {
+      router.push(`/products?search=${encodeURIComponent(searchTerm.trim())}`);
+    } else {
+      router.push('/products');
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSearch(e as unknown as React.FormEvent);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -68,15 +145,98 @@ export default function Home() {
               
               {/* Search Bar */}
               <div className="relative max-w-md">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                <Input 
-                  placeholder="Search for products..." 
-                  className="pl-12 pr-4 py-4 text-base border-2 border-gray-200 rounded-full focus:border-green-500 focus:ring-2 focus:ring-green-200"
-                />
-                <Button size="sm" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full">
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
+                <form onSubmit={handleSearch}>
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 z-10" />
+                  <Input 
+                    value={searchTerm}
+                    onChange={handleSearchInputChange}
+                    onKeyDown={handleKeyDown}
+                    onFocus={handleSearchFocus}
+                    onBlur={handleSearchBlur}
+                    placeholder="Search for products..." 
+                    className="pl-12 pr-20 py-4 text-base border-2 border-gray-200 rounded-full focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                  />
+                  {searchTerm && (
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      onClick={clearSearch}
+                      className="absolute right-12 top-1/2 -translate-y-1/2 rounded-full h-8 w-8 p-0 hover:bg-gray-100 z-10"
+                    >
+                      <X className="w-4 h-4 text-gray-400" />
+                    </Button>
+                  )}
+                  <Button 
+                    type="submit"
+                    size="sm" 
+                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full hover:bg-green-700 z-10"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </form>
+
+                {/* Search Suggestions Dropdown */}
+                {showSuggestions && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
+                    {searchSuggestions.length > 0 ? (
+                      <>
+                        <div className="p-2 border-b bg-gray-50 text-xs text-gray-600 font-medium">
+                          Search Suggestions
+                        </div>
+                        {searchSuggestions.map((item) => (
+                          <div
+                            key={item.id}
+                            onClick={() => handleSuggestionClick(item.name)}
+                            className="flex items-center gap-3 p-3 hover:bg-green-50 cursor-pointer border-b last:border-b-0 transition-colors"
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                handleSuggestionClick(item.name);
+                              }
+                            }}
+                          >
+                            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                              <span className="text-xs font-bold text-green-700">{item.category.slice(0, 2).toUpperCase()}</span>
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-medium text-gray-900">{item.name}</div>
+                              <div className="text-sm text-gray-500">₹{item.price}/{item.unit} • {item.category}</div>
+                            </div>
+                            <ArrowRight className="w-4 h-4 text-gray-400" />
+                          </div>
+                        ))}
+                      </>
+                    ) : (
+                      <div className="p-4 text-center text-gray-500">
+                        <div className="text-sm">No products found matching "{searchTerm}"</div>
+                        <div className="text-xs mt-1">Try searching for something else</div>
+                      </div>
+                    )}
+                    
+                    {searchTerm && (
+                      <div 
+                        onClick={() => handleSuggestionClick(searchTerm)}
+                        className="flex items-center gap-3 p-3 hover:bg-blue-50 cursor-pointer border-t bg-gray-50 transition-colors"
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                          <Search className="w-5 h-5 text-blue-600" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-medium text-gray-900">Search for "{searchTerm}"</div>
+                          <div className="text-sm text-gray-500">View all results</div>
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-gray-400" />
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
+
+
 
               {/* Stats */}
               <div className="flex gap-8 pt-4">
@@ -146,65 +306,6 @@ export default function Home() {
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Products</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Handpicked selection of our finest products, sourced directly from trusted local farms
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
-              <div key={product.id} className="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div className="relative aspect-square">
-                  <Image
-                    src={product.imageUrl}
-                    alt={product.name}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <Badge className="absolute top-4 left-4 bg-white text-gray-700">
-                    {product.category}
-                  </Badge>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold text-gray-900 text-lg">{product.name}</h3>
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm text-gray-600">4.8</span>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="text-xl font-bold text-green-600">
-                      ₹{product.price}
-                      <span className="text-sm font-normal text-gray-600">/{product.unit}</span>
-                    </div>
-                    <Button size="sm" className="rounded-full" onClick={() => addToCart(product)}>
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Add
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Link href="/products">
-              <Button variant="outline" size="lg" className="rounded-full">
-                View All Products
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
           </div>
         </div>
       </section>

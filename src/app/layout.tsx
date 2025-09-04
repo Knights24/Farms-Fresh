@@ -13,15 +13,22 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Farms Fresh',
-  description: 'Fresh, organic produce delivered straight from trusted local farms to your doorstep. Quality guaranteed, freshness assured.',
-  keywords: 'organic produce, fresh vegetables, farm fresh, organic fruits, local farms, grocery delivery',
-  authors: [{ name: 'Farms Fresh Team' }],
+  title: 'Farm Fresh - Portfolio Project | Vivek Vishwakarma',
+  description: 'Full-Stack Agricultural E-Commerce Platform - A portfolio project demonstrating modern web development skills with Next.js, TypeScript, MongoDB, and Tailwind CSS.',
+  keywords: 'portfolio, full-stack developer, nextjs, typescript, mongodb, tailwindcss, e-commerce, react, web development, vivek vishwakarma',
+  authors: [{ name: 'Vivek Vishwakarma', url: 'https://github.com/Knights24' }],
+  creator: 'Vivek Vishwakarma',
   openGraph: {
-    title: 'Farms Fresh',
-    description: 'Fresh, organic produce delivered straight from trusted local farms to your doorstep.',
+    title: 'Farm Fresh - Portfolio Project',
+    description: 'Full-Stack Agricultural E-Commerce Platform showcasing modern web development skills.',
     type: 'website',
+    siteName: 'Farm Fresh Portfolio',
     images: ['/images/logo.svg?v=2'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Farm Fresh - Portfolio Project',
+    description: 'Full-Stack E-Commerce Platform built with Next.js & TypeScript',
   },
   icons: {
     icon: '/images/logo.svg?v=2',

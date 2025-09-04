@@ -251,15 +251,15 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      {/* Founding Team */}
+      {/* Development Team */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Our Founding Team
+              Development Team
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Three passionate BTech students from Gujarat with complementary skills in AI/ML and technology
+              Skilled developers with expertise in modern web technologies and agricultural solutions
             </p>
           </div>
           
@@ -267,30 +267,30 @@ export default function TechnologyPage() {
             <Card className="text-center hover:shadow-lg transition-all">
               <CardContent className="p-6">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-green-600">VV</span>
+                  <span className="text-2xl font-bold text-green-600">FS</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Vivek Vishwakarma</h3>
-                <p className="text-green-600 font-semibold">Founder</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Full-Stack Development</h3>
+                <p className="text-green-600 font-semibold">Frontend & Backend</p>
               </CardContent>
             </Card>
             
             <Card className="text-center hover:shadow-lg transition-all">
               <CardContent className="p-6">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-green-600">SM</span>
+                  <span className="text-2xl font-bold text-green-600">AI</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Simit Modi</h3>
-                <p className="text-green-600 font-semibold">Co-Founder</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">AI Integration</h3>
+                <p className="text-green-600 font-semibold">Machine Learning</p>
               </CardContent>
             </Card>
             
             <Card className="text-center hover:shadow-lg transition-all">
               <CardContent className="p-6">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-green-600">TL</span>
+                  <span className="text-2xl font-bold text-green-600">DB</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Tejas Luhar</h3>
-                <p className="text-green-600 font-semibold">Co-Founder</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Database Design</h3>
+                <p className="text-green-600 font-semibold">Data Architecture</p>
               </CardContent>
             </Card>
           </div>

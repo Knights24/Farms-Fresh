@@ -97,45 +97,15 @@ export default function Header() {
                 <Search className="h-5 w-5 text-gray-600" />
               </Button>
 
-              {/* User Account */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    className="hidden sm:flex hover:bg-gray-100 rounded-lg"
-                  >
-                    <User className="h-5 w-5 text-gray-600" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link href="/orders" className="cursor-pointer">
-                      <Package className="mr-2 h-4 w-4" />
-                      <span>My Orders</span>
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/wishlist" className="cursor-pointer">
-                      <Heart className="mr-2 h-4 w-4" />
-                      <span>Wishlist</span>
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/account" className="cursor-pointer">
-                      <Settings className="mr-2 h-4 w-4" />
-                      <span>Account Settings</span>
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="cursor-pointer text-red-600 focus:text-red-600">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Sign Out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              {/* User Account - Portfolio Demo */}
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="hidden sm:flex hover:bg-gray-100 rounded-lg"
+                title="User Account (Demo)"
+              >
+                <User className="h-5 w-5 text-gray-600" />
+              </Button>
 
               {/* Cart */}
               <Button 
@@ -178,39 +148,6 @@ export default function Header() {
                     {link.label}
                   </Link>
                 ))}
-                
-                {/* Mobile User Profile Section */}
-                <div className="border-t border-gray-100 mt-4 pt-4">
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-3 mb-2">Account</p>
-                  <Link 
-                    href="/orders"
-                    className="flex items-center text-sm font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-lg hover:bg-green-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Package className="mr-2 h-4 w-4" />
-                    My Orders
-                  </Link>
-                  <Link 
-                    href="/wishlist"
-                    className="flex items-center text-sm font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-lg hover:bg-green-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Heart className="mr-2 h-4 w-4" />
-                    Wishlist
-                  </Link>
-                  <Link 
-                    href="/account"
-                    className="flex items-center text-sm font-medium text-gray-700 hover:text-green-600 transition-colors px-3 py-2 rounded-lg hover:bg-green-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Settings className="mr-2 h-4 w-4" />
-                    Account Settings
-                  </Link>
-                  <button className="flex items-center w-full text-sm font-medium text-red-600 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50 mt-2">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Sign Out
-                  </button>
-                </div>
               </nav>
               {/* Mobile Search */}
               <form onSubmit={handleSearch} className="relative mt-4">

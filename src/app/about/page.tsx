@@ -110,17 +110,17 @@ export default function AboutPage() {
 
         {/* Team Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Meet Our Team</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Our Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="text-center p-6">
               <CardContent>
                 <div className="w-24 h-24 bg-gradient-to-br from-green-200 to-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <Users className="h-12 w-12 text-gray-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Vivek Vishwakarma</h3>
-                <p className="text-green-600 font-medium mb-2">Founder & CEO</p>
+                <h3 className="text-xl font-semibold mb-2">Development Team</h3>
+                <p className="text-green-600 font-medium mb-2">Full-Stack Developers</p>
                 <p className="text-gray-600">
-                  Passionate about sustainable agriculture and connecting communities through fresh food.
+                  Passionate about sustainable agriculture and connecting communities through technology.
                 </p>
               </CardContent>
             </Card>

@@ -1,33 +1,38 @@
 {
-  "name": "farm-fresh",
+  "name": "farm-fresh-portfolio",
   "version": "1.0.0",
-  "description": "Fresh produce delivery platform - Fresh, organic produce delivered straight from trusted local farms to your doorstep",
+  "description": "Full-Stack Agricultural E-Commerce Platform - Portfolio Project demonstrating modern web development skills",
   "private": true,
-  "homepage": "https://farmfresh.com",
+  "homepage": "https://github.com/Knights24/Farms-Fresh",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Knights24/FreshFarm.git"
+    "url": "https://github.com/Knights24/Farms-Fresh.git"
   },
-  "author": "Farm Fresh Team",
+  "author": {
+    "name": "Vivek Vishwakarma",
+    "email": "vivekvishwakarma21@outlook.com",
+    "url": "https://github.com/Knights24"
+  },
   "license": "MIT",
   "keywords": [
-    "organic produce",
-    "fresh vegetables",
-    "farm fresh",
-    "grocery delivery",
-    "e-commerce",
+    "portfolio",
+    "full-stack",
     "nextjs",
+    "typescript",
+    "mongodb",
+    "tailwindcss",
+    "e-commerce",
     "react",
-    "typescript"
+    "web-development",
+    "farm-fresh",
+    "organic-produce"
   ],
   "scripts": {
-    "dev": "next dev --turbopack -p 9002",
-    "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
-    "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "preview": "next build && next start"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.14.1",
@@ -58,7 +63,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
-    "dotenv": "^16.5.0",
     "embla-carousel-react": "^8.6.0",
     "firebase": "^11.9.1",
     "genkit": "^1.14.1",
@@ -85,6 +89,6 @@
     "genkit-cli": "^1.14.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "5.9.2"
   }
 }
