@@ -12,7 +12,7 @@
 
 *A comprehensive portfolio project demonstrating modern web development skills, database management, and responsive design.*
 
-[![🌐 Live Demo](https://img.shields.io/badge/🌐_Live_Demo-View_Project-22c55e?style=for-the-badge)](https://your-farm-fresh-demo.vercel.app)
+[![🌐 Live Demo](https://img.shields.io/badge/🌐_Live_Demo-View_Project-22c55e?style=for-the-badge)](https://fresh-farm-awxpwtz76-knight-igris-projects.vercel.app)
 [![📱 Responsive](https://img.shields.io/badge/📱_Responsive-Mobile_Ready-06b6d4?style=for-the-badge)](#features)
 [![⚡ Performance](https://img.shields.io/badge/⚡_Performance-Optimized-f59e0b?style=for-the-badge)](#features)
 
@@ -141,6 +141,23 @@ npm run dev
 - Frontend: http://localhost:3000
 - Admin: http://localhost:3000/admin
 
+### **🚀 Deployment**
+
+This project is professionally deployed on **Vercel** with full production configuration:
+
+- **Production URL**: https://fresh-farm-awxpwtz76-knight-igris-projects.vercel.app
+- **Project Name**: `fresh-farm` 
+- **Environment**: MongoDB Atlas + JWT Authentication
+- **Status**: ✅ Live and fully functional
+- **Performance**: Optimized for production with static generation
+
+**Deployment Features:**
+- Automatic deployments from GitHub
+- Environment variables securely configured
+- MongoDB Atlas cloud database integration
+- Professional domain and SSL certificate
+- Global CDN distribution for optimal performance
+
 ---
 
 ## 📊 Key Achievements
@@ -162,13 +179,22 @@ npm run dev
 
 ## 🌐 Live Demo
 
-**[🔗 View Live Project](https://your-farm-fresh-demo.vercel.app)**
+**[🔗 View Live Project](https://fresh-farm-awxpwtz76-knight-igris-projects.vercel.app)**
 
 ### Demo Features
-- Browse 20+ organic products
-- Test real-time search functionality
-- Experience responsive design
-- View admin dashboard (demo credentials provided)
+- Browse 20+ organic products across 4 categories
+- Test real-time search and filtering functionality
+- Experience responsive design on all devices
+- Complete shopping cart and checkout workflow
+- View admin dashboard capabilities
+- Modern UI with Tailwind CSS and shadcn/ui components
+
+### Project Highlights
+- **Live Production Deployment** on Vercel
+- **MongoDB Atlas Integration** for data management
+- **JWT Authentication** for secure admin access
+- **Optimized Performance** with Next.js 15
+- **Professional Portfolio Showcase** ready for LinkedIn
 
 ---
 
